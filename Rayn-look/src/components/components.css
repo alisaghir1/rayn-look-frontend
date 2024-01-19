@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+*{
+    font-family: 'Righteous', cursive;
+}
+.text-warning1{
+    color: #b69f2c !important;
+}
+.text-warning1:hover{
+    color: black !important;
+}
+.custom-logo-class{
+    width: 150px;
+    height: 130px;
+}
+.bg-warning1{
+    background-color: #b69f2c !important;
+    border: none !important;
+}
+.bg-warning1:hover{
+    background-color: #dac76b !important;
+}
+
+.custom-bg-warning1{
+    background-color: #b69f2c !important;
+    border: none !important;
+}
+
+
+@media (max-width: 768px) {
+    .custom-text-home {
+      font-size: 1.5rem !important;
+    }
+    .custom-small-image{
+        height: 250px !important;
+    }
+  }
