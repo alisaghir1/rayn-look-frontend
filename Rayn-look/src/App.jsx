@@ -1,5 +1,6 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import AdminDashboard from './assets/Admin/AdminDashboard'
 
 
 const Layout = () => {
@@ -14,13 +15,14 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={Layout}>
+      <Route path='/' element={<Layout />}>
         <Route />
         <Route />
         <Route />
         <Route />
         <Route />
       </Route>
+      <Route path='/Admin' element={< AdminDashboard/>}></Route>
     </Routes>
     </BrowserRouter>
   )

@@ -1,0 +1,52 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Signika:wght@400;700&display=swap"); */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Admin-Dashboard {
+  width: 100vw;
+  height: 100vh;
+  background-color: #4639A2;
+  display: grid;
+  grid-template-columns: 20% 80%;
+}
+
+.Admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  color: #ffff00;
+  width: 90%;
+  margin-left: auto;
+  margin-top: 50px;
+  align-items: center;
+  gap: 50px;
+  /* font-family: Signika; */
+}
+
+.Admin-sidebar-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer
+}
+.Admin-icons {
+  width: 40px;
+  height: 30px;
+}
+
+.Admin-Display {
+  width: 96%;
+  height: 96%;
+  margin: auto;
+  background-color: white;
+  border-radius: 4%;
+}
+
+
+
+.Admin-display-container{
+    width: 90%;
+    margin: auto;
+}
