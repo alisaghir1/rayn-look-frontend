@@ -9,6 +9,7 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: #4639A2;
+  /* background-color: black; */
   display: grid;
   grid-template-columns: 20% 80%;
 }
@@ -49,4 +50,9 @@ body {
 .Admin-display-container{
     width: 90%;
     margin: auto;
+    height: 100%;
+}
+
+.Admin-sidebar-section.selected {
+color: white; /* Highlight color for the selected section */
 }
