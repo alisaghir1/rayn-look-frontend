@@ -1,6 +1,4 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
-import axios from 'axios'
 import i20 from '../assets/images/20.jpeg'
 import i21 from '../assets/images/24.jpeg'
 import i22 from '../assets/images/25.jpeg'
@@ -8,12 +6,13 @@ import { FaPlane } from 'react-icons/fa'; // Plane icon from Font Awesome
 import { IoMedalOutline } from 'react-icons/io5'; // Medal icon from Ionicons
 import ReactCountryFlag from "react-country-flag";
 import useProductsHook from '../hooks/useProductsHook'
+import useReviesHook from '../hooks/useReviewsHook'
+import EyeLoader from '../components/EyeLoader';
 
 
 const Home = () => {
-  const products = useProductsHook()
-    
-
+  const { products, productLoading } = useProductsHook()
+  const { reviews, reviewLoading } = useReviesHook()
 
  return (
   <div className="container-fluid p-4">
@@ -86,6 +85,7 @@ const Home = () => {
       <p style={{borderBottom: '1px solid #b69f2c'}}>WITHOUT <span style={{color: '#b69f2c'}}>POWER</span></p>
       <button className='btn btn-warning bg-warning1 bg-md-none p-3 h-50' >SHOP NOW</button>
     </div>
+    {productLoading ? (<EyeLoader />) : (
     <div className='my-5 d-flex gap-2'>
       {products.map((product,index) => (
         <div key={index}>
@@ -97,8 +97,15 @@ const Home = () => {
           </div>
       ))}
     </div>
+    )}
     <div className='py-5'>
       <p className='py-5 m-2' style={{fontSize: '2rem', borderTop: '1px solid #b69f2c'}}>OUR BEUATIFULL CUSTOMERS</p>
+      </div>
+      <div className='d-flex gap-5 justify-content-around my-5'>{reviews.map((review,index) => (
+      <div className='d-flex flex-column gap-5 border p-5 w-100' key={index}>
+        <div>{review.username}</div>
+        <p className='opacity-75 w-50'>{review.Message}</p>
+      </div>))}
       </div>
   </div>
  )
