@@ -9,7 +9,6 @@ import useProductsHook from '../hooks/useProductsHook'
 import useReviesHook from '../hooks/useReviewsHook'
 import EyeLoader from '../components/EyeLoader';
 
-
 const Home = () => {
   const { products, productLoading } = useProductsHook()
   const { reviews, reviewLoading } = useReviesHook()
@@ -76,7 +75,7 @@ const Home = () => {
           </div>
       ))}
     </div>
-    <div className=' w-100 d-flex flex-column flex-md-row py-5 align-items-center justify-content-around text-black gap-5' style={{borderBottom: '1px solid #b69f2c', borderTop: '1px solid #b69f2c'}}>
+    <div className=' w-100 d-flex flex-column flex-md-row py-5 align-items-baseline justify-content-around text-black gap-5' style={{borderBottom: '1px solid #b69f2c', borderTop: '1px solid #b69f2c'}}>
       <p><span className='p-2 text-warning1'><FaPlane /></span>WORLDWIDE SHIPPING</p>
       <p><span className='p-2 text-warning1'><IoMedalOutline /></span>BEST RATINGS IN ALL ACROSS LEBANON</p>
       <p><span className='p-2'><ReactCountryFlag countryCode="US" svg  /></span>MADE IN USA</p>
@@ -87,7 +86,7 @@ const Home = () => {
     </div>
     {productLoading ? (<EyeLoader />) : (
     <div className='my-5 d-flex gap-2'>
-      {products.map((product,index) => (
+      {products.map((product, index) => (
         <div key={index}>
         {product && product.Category.Name === 'without-power' && (
           <div className='mx-5'>

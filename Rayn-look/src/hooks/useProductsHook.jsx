@@ -10,10 +10,10 @@ const useProductsHook = () => {
         axios.get('http://localhost:8080/product')
         .then((response) => {
             setProducts(response.data)
-            setProductLoading(true)
+            setProductLoading(false)
         }).catch((error) => {
             console.log(error)
-            setProductLoading(true)
+            setProductLoading(false)
         })
      }, [])
      

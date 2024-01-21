@@ -16,17 +16,14 @@ const Navigation = () => {
           <NavLink as={Link} to="/" className="nav-link text-warning1">
             Home
           </NavLink>
-          <NavLink as={Link} to="/hikes" className="nav-link text-warning1">
+          <NavLink as={Link} to="/products" className="nav-link text-warning1">
             Our Products
           </NavLink>
-          <NavLink as={Link} to="/images" className="nav-link text-warning1">
+          <NavLink as={Link} to="/reviews" className="nav-link text-warning1">
             Give us a review
           </NavLink>
-          <NavLink as={Link} to="/images" className="nav-link text-warning1">
+          <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1">
             Privacy Policy
-          </NavLink>
-          <NavLink as={Link} to="/f&Q" className="nav-link text-warning1">
-            F&QS
           </NavLink>
           <NavLink as={Link} to="/cart" className="nav-link text-warning1">
         <FaShoppingCart />
