@@ -41,7 +41,7 @@ const AdminDashboard = () => {
           onClick={() => handleSidebarClick('Dashboard')}
         >
           <HiMiniShoppingBag className="Admin-icons" />
-          <h1>Dashboard</h1>
+          <h2>Dashboard</h2>
         </div>
 
         <div
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
           onClick={() => handleSidebarClick('Products')}
         >
           <HiMiniShoppingBag className="Admin-icons" />
-          <h1>Products</h1>
+          <h2>Products</h2>
         </div>
 
         <div
@@ -57,7 +57,7 @@ const AdminDashboard = () => {
           onClick={() => handleSidebarClick('Orders')}
         >
           <BiNotepad className="Admin-icons" />
-          <h1>Orders</h1>
+          <h2>Orders</h2>
         </div>
 
         <div
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
           onClick={() => handleSidebarClick('Reviews')}
         >
           <VscPreview className="Admin-icons" />
-          <h1>Reviews</h1>
+          <h2>Reviews</h2>
         </div>
       </div>
 

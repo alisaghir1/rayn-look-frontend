@@ -27,8 +27,7 @@ body {
 }
 
 .admin-dashboard-logo{
-width: 90%;
-height: 30%;
+height: 20%;
 }
 .Admin-sidebar-section {
   display: flex;
@@ -45,7 +44,7 @@ height: 30%;
   width: 96%;
   height: 96%;
   margin: auto;
-  background-color: #F9F9F9 ;
+  background-color: white ;
   border-radius: 4%;
 }
 
