@@ -1,5 +1,5 @@
 import './App.css'
-import AdminDashboard from './assets/Admin/AdminDashboard'
+import AdminDashboard from './Admin/AdminDashboard'
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import Footer from './components/Footer'
 import Home from './pages/Home'

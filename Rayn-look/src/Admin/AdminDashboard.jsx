@@ -7,7 +7,7 @@ import AdminHome from './adminhome/adminhome';
 import Adminproducts from './adminproducts/adminproducts';
 import Adminorders from './adminorders/adminorders';
 import Adminreviews from './adminreviews/adminreviews';
-import logo from "../images/rayn-look-logo1.png"
+import logo from "../assets/images/rayn-look-logo1.png"
 const AdminDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
 

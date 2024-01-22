@@ -1,0 +1,53 @@
+.orders-table{
+    width: 100%;
+    border-collapse:separate;
+    border-spacing:0 15px;
+}
+
+
+
+.orders-table-row{
+    background-color: #f9f9f9  ;
+    height: 50px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, .2);
+}
+
+
+
+.admin-orders-search{
+    width: 30%;
+    margin-top: 30px;
+    float: right;
+}
+
+
+
+
+
+
+
+.Whole-order-edit-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 9999; 
+  }
+  
+
+  
+  
+
+  .order-Edit-Form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+
+  
