@@ -1,0 +1,40 @@
+.admin-reviews-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+
+
+
+.Admin-review-card{
+    background-color: #f9f9f9  ;
+    height: 350px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, .2);
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.Admin-review-card-details{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.Admin-review-card-details-first{
+    display: flex; 
+    gap: 30px;
+}
+
+ .reviews-image{
+    height: 30px;
+    width: 30px;
+ }
+
+
+ .admin-reviews-search-bar{
+width: 30%;
+margin-top: 30px;
+margin-left: 930px;
+ }
