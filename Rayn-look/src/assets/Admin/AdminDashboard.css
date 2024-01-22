@@ -8,7 +8,7 @@ body {
 .Admin-Dashboard {
   width: 100vw;
   height: 100vh;
-  background-color: #4639A2;
+  background-color: black;
   /* background-color: black; */
   display: grid;
   grid-template-columns: 20% 80%;
@@ -17,7 +17,7 @@ body {
 .Admin-sidebar {
   display: flex;
   flex-direction: column;
-  color: #ffff00;
+  color: #B69F2C;
   width: 90%;
   margin-left: auto;
   margin-top: 50px;
@@ -26,6 +26,10 @@ body {
   /* font-family: Signika; */
 }
 
+.admin-dashboard-logo{
+width: 90%;
+height: 30%;
+}
 .Admin-sidebar-section {
   display: flex;
   align-items: center;
@@ -41,7 +45,7 @@ body {
   width: 96%;
   height: 96%;
   margin: auto;
-  background-color: white;
+  background-color: #F9F9F9 ;
   border-radius: 4%;
 }
 

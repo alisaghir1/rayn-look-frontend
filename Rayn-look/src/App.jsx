@@ -1,11 +1,17 @@
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import AdminDashboard from './assets/Admin/AdminDashboard'
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import Navbar from './components/Navbar'
 
 
 const Layout = () => {
   return(
     <>
+    <Navbar />
+    <Outlet />
+    <Footer />
     </>
   )
 }
@@ -17,6 +23,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route />
+        <Route path='/' element={<Home />}/>
         <Route />
         <Route />
         <Route />

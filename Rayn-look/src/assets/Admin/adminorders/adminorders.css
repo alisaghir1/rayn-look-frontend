@@ -1,0 +1,13 @@
+.orders-table{
+    width: 100%;
+    border-collapse:separate;
+    border-spacing:0 15px;
+}
+
+
+
+
+
+.orders-table-row{
+    background-color: #FFFFFF  ;
+}

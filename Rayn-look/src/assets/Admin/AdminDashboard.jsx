@@ -7,7 +7,7 @@ import AdminHome from './adminhome/adminhome';
 import Adminproducts from './adminproducts/adminproducts';
 import Adminorders from './adminorders/adminorders';
 import Adminreviews from './adminreviews/adminreviews';
-
+import logo from "../images/rayn-look-logo1.png"
 const AdminDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
 
@@ -33,6 +33,9 @@ const AdminDashboard = () => {
   return (
     <div className="Admin-Dashboard">
       <div className="Admin-sidebar">
+
+<img src={logo} alt="" className='admin-dashboard-logo'/>
+
         <div
           className={`Admin-sidebar-section ${selectedComponent === 'Dashboard' ? 'selected' : ''}`}
           onClick={() => handleSidebarClick('Dashboard')}
