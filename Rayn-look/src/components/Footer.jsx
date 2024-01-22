@@ -3,12 +3,13 @@ import {
  FaInstagram,
 } from 'react-icons/fa';
 import './components.css'
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
  return (
    <footer
      className="text-center text-lg-start text-dark"
-     style={{backgroundColor: "white"}}
+     style={{backgroundColor: "transparent"}}
    >
      <section
        className="d-flex justify-content-between p-4 text-white"
@@ -47,19 +48,16 @@ const Footer = () => {
                style={{width: "60px", backgroundColor: "black", height: "2px"}}
              />
              <p>
-               <a href="#!" className="text-dark">Home</a>
+               <Link to={'/'} className="text-dark">Home</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Our Products</a>
+               <Link to={'/products'} className="text-dark">Our Products</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Give us a Review</a>
+               <Link to={'/reviews'} className="text-dark">Give us a Review</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Privacy policy</a>
-             </p>
-             <p>
-               <a href="#!" className="text-dark">F&QS</a>
+               <Link to={'/privacy-policy'} className="text-dark">Privacy policy</Link>
              </p>
            </div>
 

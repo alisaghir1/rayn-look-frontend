@@ -5,6 +5,7 @@ import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'typeface-playfair-display';
+//styled component
 
 
 

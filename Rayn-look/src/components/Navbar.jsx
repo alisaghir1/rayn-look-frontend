@@ -6,7 +6,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 const Navigation = () => {
   return (
-    <Navbar expand="lg"  className="px-5 navbar bg-white">
+    <Navbar expand="lg"  className="px-5 navbar">
       <Navbar.Brand as={Link} to="/" className='d-flex justify-content-baseline'>
         <img src={i20} alt="" className="custom-logo-class" />
         </Navbar.Brand>

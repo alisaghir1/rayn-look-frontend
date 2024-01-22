@@ -6,8 +6,12 @@
 .text-warning1{
     color: #b69f2c !important;
 }
+.text-warning2{
+    color: #b69f2c !important;
+}
 .text-warning1:hover{
-    color: black !important;
+    color :#dac76b !important;
+    transition: 0.5s;
 }
 .custom-logo-class{
     width: 150px;
@@ -19,6 +23,7 @@
 }
 .bg-warning1:hover{
     background-color: #dac76b !important;
+    transition: 0.5s;
 }
 
 .custom-bg-warning1{
@@ -26,12 +31,20 @@
     border: none !important;
 }
 
-
+.btn-fandq{
+    color: #b69f2c !important;
+}
+.custom-text-fqs{
+font-size: larger;
+}
 @media (max-width: 768px) {
     .custom-text-home {
       font-size: 1.5rem !important;
     }
     .custom-small-image{
         height: 250px !important;
+    }
+    .custom-images-div{
+        margin-bottom: 40px;
     }
   }
