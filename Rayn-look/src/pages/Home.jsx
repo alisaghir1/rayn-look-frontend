@@ -7,10 +7,10 @@ import { IoMedalOutline } from "react-icons/io5"; // Medal icon from Ionicons
 import ReactCountryFlag from "react-country-flag";
 import { useNavigate,Link } from "react-router-dom";
 import useProductsHook from "../hooks/useProductsHook";
-import useReviesHook from "../hooks/useReviewsHook";
 import EyeLoader from "../components/EyeLoader";
 import FrequentlyAsked from "./FrequentlyAsked";
-
+import { ReactTyped } from "react-typed";
+ 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -30,7 +30,9 @@ const Home = () => {
   const handleNavigate = () => {
     navigate('/products')
   }
-  
+
+
+
   return (
     <div className="container-fluid p-4">
       <div className="row">
@@ -40,9 +42,15 @@ const Home = () => {
           <div style={{ position: "absolute", top: "30%", left: "10%" }}>
             <p
               style={{ fontSize: "2.5rem" }}
-              className="fw-bold text-white custom-text-home w-75"
+              className="fw-bold text-white custom-text-home w-75 "
             >
-              Lebanon's Most Comfortable Lenses
+              Lebanon's Most <ReactTyped
+                strings={['Comfortable ', 'Unique ', 'Affordable', 'Captivating']}
+                typeSpeed={100}
+                backSpeed={50}
+                loop
+              /> 
+                Lenses
             </p>
             <button className="btn btn-warning bg-warning1 bg-md-none p-3" onClick={handleNavigate}>
               SHOP NOW
@@ -138,7 +146,7 @@ const Home = () => {
             .filter((product) => product.Category.Name === "with-power")
             .map((product, index) => (
               <SwiperSlide key={index} className="bg-transparent">
-              <Link to={'/single-product'} state={{product: product}}>
+              <Link to={'/single-product'} state={{product, productLoading}}>
               <img
                 className="rounded"
                 style={{ height: "250px", width: "250px" }}
@@ -222,7 +230,7 @@ const Home = () => {
           .filter((product) => product.Category.Name === "without-power")
           .map((product, index) => (
             <SwiperSlide key={index} className="bg-transparent">
-              <Link to={'/single-product'} state={{product: product}}>
+              <Link to={'/single-product'} state={{product, productLoading}}>
               <img
                 className="rounded"
                 style={{ height: "250px", width: "250px" }}

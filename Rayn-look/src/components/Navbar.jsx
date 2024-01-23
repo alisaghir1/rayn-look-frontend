@@ -1,14 +1,20 @@
 import React from 'react';
 import { Navbar, Nav, NavLink } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import i20 from '../assets/images/rayn-look-logo1.png'
+import { Link,useNavigate } from 'react-router-dom';
+import i20 from '../assets/images/logo1.png'
 import { FaShoppingCart } from 'react-icons/fa';
 
 const Navigation = () => {
+  const navigate = useNavigate()
+
+  const handleNavigate = () => {
+    navigate('/')
+  }
+  
   return (
     <Navbar expand="lg"  className="px-5 navbar">
       <Navbar.Brand as={Link} to="/" className='d-flex justify-content-baseline'>
-        <img src={i20} alt="" className="custom-logo-class" />
+        <img src={i20} alt="" className="custom-logo-class" onClick={handleNavigate}/>
         </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" className=' justify-self-end'/>
       <Navbar.Collapse id="responsive-navbar-nav " className="justify-content-end">
