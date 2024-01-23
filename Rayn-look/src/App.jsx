@@ -13,6 +13,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Products from "./pages/Products";
 import Reviews from "./pages/Reviews";
 import FrequentlyAsked from "./pages/FrequentlyAsked";
+import SingleProduct from "./pages/SingleProduct";
 
 const Layout = () => {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/single-product" element={<SingleProduct />} />
           <Route />
         </Route>
       </Routes>

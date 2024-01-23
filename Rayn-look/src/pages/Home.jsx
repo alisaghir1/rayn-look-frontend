@@ -5,6 +5,7 @@ import i22 from "../assets/images/32.webp";
 import { FaPlane } from "react-icons/fa"; // Plane icon from Font Awesome
 import { IoMedalOutline } from "react-icons/io5"; // Medal icon from Ionicons
 import ReactCountryFlag from "react-country-flag";
+import { useNavigate,Link } from "react-router-dom";
 import useProductsHook from "../hooks/useProductsHook";
 import useReviesHook from "../hooks/useReviewsHook";
 import EyeLoader from "../components/EyeLoader";
@@ -23,6 +24,12 @@ import { Grid, Pagination } from "swiper/modules";
 
 const Home = () => {
   const { products, productLoading } = useProductsHook();
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/products')
+  }
   
   return (
     <div className="container-fluid p-4">
@@ -37,7 +44,7 @@ const Home = () => {
             >
               Lebanon's Most Comfortable Lenses
             </p>
-            <button className="btn btn-warning bg-warning1 bg-md-none p-3">
+            <button className="btn btn-warning bg-warning1 bg-md-none p-3" onClick={handleNavigate}>
               SHOP NOW
             </button>
           </div>
@@ -58,7 +65,7 @@ const Home = () => {
               >
                 Without Power
               </p>
-              <button className="btn btn-warning bg-warning1 p-3">
+              <button className="btn btn-warning bg-warning1 p-3" onClick={handleNavigate}>
                 SHOP NOW
               </button>
             </div>
@@ -76,7 +83,7 @@ const Home = () => {
               >
                 With Power
               </p>
-              <button className="btn btn-warning bg-warning1 p-3">
+              <button className="btn btn-warning bg-warning1 p-3" onClick={handleNavigate}>
                 SHOP NOW
               </button>
             </div>
@@ -92,11 +99,14 @@ const Home = () => {
         <p style={{ borderBottom: "1px solid #b69f2c" }}>
           WITH <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
-        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50">
+        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50" onClick={handleNavigate}>
           SHOP NOW
         </button>
       </div>
       <div className="my-5 d-flex gap-2">
+      {productLoading ? (
+        <EyeLoader />
+      ) : (
         <Swiper
           slidesPerView={1}
           grid={{
@@ -106,7 +116,7 @@ const Home = () => {
           pagination={{
             clickable: true,
           }}
-          modules={[Grid, Pagination]}
+          modules={[Grid]}
           className="mySwiper"
           breakpoints={{
             // when window width is >= 600px
@@ -128,18 +138,21 @@ const Home = () => {
             .filter((product) => product.Category.Name === "with-power")
             .map((product, index) => (
               <SwiperSlide key={index} className="bg-transparent">
-                <img
-                  className="rounded"
-                  style={{ height: "250px", width: "250px" }}
-                  src={`http://localhost:8080/${product.Image[0]}`}
-                  alt={index}
-                />
-                <p>
-                  {product.Name} {product.Price}$
+              <Link to={'/single-product'} state={{product: product}}>
+              <img
+                className="rounded"
+                style={{ height: "250px", width: "250px" }}
+                src={`http://localhost:8080/${product.Image[0]}`}
+                alt={index}
+              />
+              </Link>
+                <p className="m-1 fw-bold">
+                  {product.Name}
                 </p>
               </SwiperSlide>
             ))}
         </Swiper>
+      )}
       </div>
       <div
         className=" w-100 d-flex flex-column flex-md-row py-5 align-items-baseline justify-content-around text-black gap-5"
@@ -171,7 +184,7 @@ const Home = () => {
         <p style={{ borderBottom: "1px solid #b69f2c" }}>
           WITHOUT <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
-        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50">
+        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50" onClick={handleNavigate}>
           SHOP NOW
         </button>
       </div>
@@ -187,7 +200,7 @@ const Home = () => {
         pagination={{
           clickable: true,
         }}
-        modules={[Grid, Pagination]}
+        modules={[Grid]}
         className="mySwiper"
         breakpoints={{
           // when window width is >= 600px
@@ -209,14 +222,16 @@ const Home = () => {
           .filter((product) => product.Category.Name === "without-power")
           .map((product, index) => (
             <SwiperSlide key={index} className="bg-transparent">
+              <Link to={'/single-product'} state={{product: product}}>
               <img
                 className="rounded"
                 style={{ height: "250px", width: "250px" }}
                 src={`http://localhost:8080/${product.Image[0]}`}
                 alt={index}
               />
-              <p>
-                {product.Name} {product.Price}$
+              </Link>
+              <p className="m1 fw-bold">
+                {product.Name}
               </p>
             </SwiperSlide>
           ))}
