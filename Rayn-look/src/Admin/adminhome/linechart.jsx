@@ -1,26 +1,53 @@
 import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const BasicLineChart = () => {
-  // Function to generate an array of dates starting from today till 9 days later
+  const [orderData, setOrderData] = useState([]);
+  
+  useEffect(() => {
+    const fetchOrderData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/Order");
+        setOrderData(response.data);
+      } catch (error) {
+        console.error("Error fetching order data:", error);
+      }
+    };
+
+    fetchOrderData();
+  }, []);
+
+  // Function to generate an array of dates from the order data
   const generateDateArray = () => {
     const today = new Date();
     const dateArray = Array.from({ length: 9 }, (_, index) => {
       const date = new Date(today);
       date.setDate(today.getDate() + index);
-      return date;
+      return date.toISOString().split('T')[0]; // Use ISO string without time for comparison
     });
     return dateArray;
   };
 
+  // Function to generate series data based on order dates
+  const generateSeriesData = (dateArray, orderData) => {
+    const seriesData = dateArray.map(date => {
+      const ordersOnDate = orderData.filter(order => order.date.split('T')[0] === date);
+      return ordersOnDate.length;
+    });
+    return seriesData;
+  };
+
   const dateArray = generateDateArray();
+  const seriesData = generateSeriesData(dateArray, orderData);
 
   return (
     <LineChart
       xAxis={[{ key: 'date', type: 'time', data: dateArray }]}
       series={[
         {
-          data: [2, 5.5, 2, 8.5, 1.5, 5, 3, 6, 7], 
+          data: seriesData, 
         },
       ]}
       width={1300}

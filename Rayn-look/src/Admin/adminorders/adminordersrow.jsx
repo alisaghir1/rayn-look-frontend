@@ -25,7 +25,7 @@ const Adminordersrow = () => {
         <td>Date</td>
         <td>Total amount</td>
         <td>
-          <DropdownButton id="dropdown-basic-button" title="Products">
+          <DropdownButton id="dropdown-basic-button" title="Products" >
             <Dropdown.Item href="#/action-1">Product 1</Dropdown.Item>
             <Dropdown.Item href="#/action-2">Product 2</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Product 3</Dropdown.Item>
