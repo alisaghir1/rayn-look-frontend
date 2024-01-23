@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 const Adminreviews = () => {
     const [review, setreview] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
     useEffect(() => {
         const fetchingreviews = () => {
           axios
@@ -30,12 +31,16 @@ const Adminreviews = () => {
           variant="outlined"
           fullWidth
           label="Search"
+          value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
         />
  </div>
            <div className="admin-reviews-container">
 
             {review &&
-              review.map((item, index) => <Adminreviewcard key={index} data={item} />)}
+              review.filter((item) =>
+              (searchTerm === "" ||
+                (item.username && item.username.toLowerCase().includes(searchTerm.toLowerCase())))
+            ).map((item, index) => <Adminreviewcard key={index} data={item} />)}
             </div>
         </div>
     )
