@@ -47,9 +47,10 @@ height: 20%;
   background-color: white ;
   border-radius: 4%;
   overflow: scroll;
-  overflow-x: hidden;
 }
-
+.Admin-Display::-webkit-scrollbar {
+  display: none;
+}
 
 
 .Admin-display-container{

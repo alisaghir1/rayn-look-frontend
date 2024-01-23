@@ -1,15 +1,20 @@
 import { FaCircleUser } from "react-icons/fa6";
- const Adminreviewcard = () =>{
+import { MdDelete } from "react-icons/md";
+ const Adminreviewcard = ({data}) =>{
     return(
         <div className="Admin-review-card">
             <div className="Admin-review-card-details">
 
 <div className="Admin-review-card-details-first">
    <FaCircleUser className="reviews-image"/>
-<h4>Name</h4>
+<h4>{data.username}</h4>
+
+<MdDelete className="admin-reviews-delete"/>
 
 </div>
-<p>this is a very nice product</p>
+<p>{data.Message}
+
+</p>
 
 
 </div>
