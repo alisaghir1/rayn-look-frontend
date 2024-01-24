@@ -8,17 +8,19 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const Adminproducts = () => {
+    const [errorMessage, setErrorMessage] = useState("");
     const [products, setProducts] = useState([]);
     const [show, setShow] = useState(false);
     const [categories, setCategories] = useState([]);
     const [creationCategory, setCreationCategory] = useState("");
+    const [creationName, setCreationName] = useState("");
+    const [creationPrice, setCreationPrice] = useState("");
+    const [creationImages, setCreationImages] = useState("");
+    const [creationDescription, setCreationDescription] = useState("");
+
     const [CategorybuttonName, setCategoryButtonName] = useState("Category")
-    const handleDelete = (deletedProduct) => {
-        setProducts(prevProduct => prevProduct.filter(Product => Product._id !== deletedProduct));
-    };
-
-    const handlesubmit = () => {
-
+    const handleDelete = () => {
+        fetchProducts();
     };
 
     const fetchCategories = async () => {
@@ -41,66 +43,101 @@ const Adminproducts = () => {
         }
     };
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-            const response = await axios.get(`http://localhost:8080/Product/`,
-            // {
-            //     headers: {
-            //       Authorization: `Bearer ${user.token}`,
-            //     },
-            //   }
-              );
-            // console.log(userId)
-            const data = response.data;
-            setProducts(data);
-            // console.log(data)
-            } catch (error) {
-            console.log(error);
-            setProducts(null);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        console.log("kousa");
+        if (!creationName || !creationPrice || !creationDescription || !creationImages || creationCategory == "Category") {
+            setErrorMessage("Please fill out all fields.");
+        }
+        else {
+            console.log(creationImages);
+            const formData = new FormData();
+            formData.append('Name', creationName);
+            formData.append('Price', creationPrice);
+            for (let i = 0; i < creationImages.length; i++) {
+                formData.append('Image', creationImages[i]);
             }
-        };
+            formData.append('Description', creationDescription);
+            formData.append('Category', creationCategory);
+
+            try {
+                const response = await axios.post(
+                `http://localhost:8080/Product`,
+                formData
+                );
+                console.log(response);
+                setShow(false);
+                fetchProducts()
+            } catch (error) {
+                console.log(error);
+                setShow(true);
+            }
+        }
+    };
+
+    const fetchProducts = async () => {
+        try {
+        const response = await axios.get(`http://localhost:8080/Product`,
+        // {
+        //     headers: {
+        //       Authorization: `Bearer ${user.token}`,
+        //     },
+        //   }
+          );
+        // console.log(userId)
+        const data = response.data;
+        setProducts(data);
+        // console.log(data)
+        } catch (error) {
+        console.log(error);
+        setProducts(null);
+        }
+    };
+
+    useEffect(() => {
         fetchProducts();
         fetchCategories();
-    }, []);
+    }, [products]);
 
     return(
         <>
             <button className="admin-Main-Create" onClick={() => setShow(true)}>Create</button>
             <div className="admin-product-container">
-            {products && products.length > 0 ? (
-                    products.map((product) => (
-                    <Adminproductcard
-                    data={product}
-                    onDelete={() => handleDelete(product._id)}
-                    />
-                    ))
-                ) : (
-                    <p className="DisplayAll-Title">No Products available</p>
-                )}
+                {products && products.length > 0 ? (
+                        products.map((product) => (
+                        <Adminproductcard
+                        key = {product._id}
+                        data={product}
+                        onDelete={() => handleDelete()}
+                        />
+                        ))
+                    ) : (
+                        <p className="DisplayAll-Title">No Products available</p>
+                    )}
             </div>
-            <Modal show={show} onHide={() => {setShow(false); setCategoryButtonName("Category");}}>
+            <Modal show={show} onHide={() => {setShow(false); setCategoryButtonName("Category"); setErrorMessage("")}}>
                 <Modal.Header closeButton onClick={()=>{setCategoryButtonName("Category")}}>
                     <Modal.Title>Create Product</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <Form  >
+                <Form >
                     <Form.Group controlId="formName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control
                         type="text"
                         placeholder="Enter Name"
                         required = {true}
-                        // onChange={handleNameCreate}
+                        onChange={(event) => setCreationName(event.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId="formName">
+                    <Form.Group controlId="formPrice">
                         <Form.Label>Price</Form.Label>
                         <Form.Control
                         type="number"
                         placeholder="Enter Price"
                         required = {true}
-                        // onChange={handlePriceCreate}
+                        onChange={(event) => setCreationPrice(event.target.value)}
+
                         />
                     </Form.Group>
                     <Form.Group controlId="formDescription">
@@ -109,35 +146,40 @@ const Adminproducts = () => {
                         type="text"
                         placeholder="Enter description"
                         required = {true}
-                        // onChange={handleDescriptionCreate}
+                        onChange={(event) => setCreationDescription(event.target.value)}
                         />
                     </Form.Group>
                     <Form.Group controlId="formImage">
-                        <Form.Label>Images</Form.Label>
+                    <Form.Label>Images</Form.Label>
                         <Form.Control
-                        type="file"
-                        placeholder="Enter images"
-                        required = {true}
-                        multiple = {true}
-                        // onChange={handleImageCreate}
+                            type="file"
+                            placeholder="Enter images"
+                            required= {true}
+                            multiple={true}
+                            onChange={(event) => setCreationImages(event.target.files)}
                         />
                     </Form.Group>
                     <Form.Group controlId="formCategory">
                         <Form.Label>Choose Category</Form.Label>
-                        <Dropdown onSelect={(eventKey) => {setCreationCategory(eventKey); setCategoryButtonName(eventKey);}}>
+                        <Dropdown onSelect={(eventKey) => {
+                            const selectedCategory = categories.find(category => category._id === eventKey);
+                            setCreationCategory(selectedCategory._id);
+                            setCategoryButtonName(selectedCategory.Name);
+                            }}>
                             <Dropdown.Toggle variant="secondary" id="dropdown-basic">
                                 {CategorybuttonName}
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
                                 {categories.map((category, index) => (
-                                    <Dropdown.Item key={index} eventKey={category.Name}>
+                                    <Dropdown.Item key={index} eventKey={category._id}>
                                         {category.Name}
                                     </Dropdown.Item>
                                 ))}
                             </Dropdown.Menu>
                         </Dropdown>
+                        <p style={{color: 'red'}}>{errorMessage}</p>
                     </Form.Group>
-                    <Button variant="primary mt-3" className="SubmitButton" type="submit" >
+                    <Button variant="primary mt-3" className="SubmitButton" type="submit" onClick={handleSubmit} >
                         Submit
                     </Button>
                 </Form>
