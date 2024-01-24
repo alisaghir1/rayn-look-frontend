@@ -11,7 +11,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Products from "./pages/Products";
-import Reviews from "./pages/Reviews";
+import Feedbacks from "./pages/Feedbacks";
 import FrequentlyAsked from "./pages/FrequentlyAsked";
 
 const Layout = () => {
@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/reviews" element={<Feedbacks />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route />
         </Route>

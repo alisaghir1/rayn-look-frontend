@@ -4,25 +4,26 @@
     font-family: 'Righteous', cursive;
 }
 .text-warning1{
-    color: #b69f2c !important;
+    color: var(--primary) !important;
 }
 .text-warning1:hover{
-    color: black !important;
+    color: var(--secondary) !important;
+
 }
 .custom-logo-class{
     width: 150px;
     height: 130px;
 }
 .bg-warning1{
-    background-color: #b69f2c !important;
+    color: var(--primary) !important;
     border: none !important;
 }
 .bg-warning1:hover{
-    background-color: #dac76b !important;
+    color: var(--primary) !important;
 }
 
 .custom-bg-warning1{
-    background-color: #b69f2c !important;
+    color: var(--primary) !important;
     border: none !important;
 }
 

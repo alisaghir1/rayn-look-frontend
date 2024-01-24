@@ -9,7 +9,7 @@
     content: "";
     height: 100%;
     width: 100%;
-    border: 1px solid #b69f2c;
+    border: 1px solid var(--primary);
     border-radius: 50%;
     position: absolute;
     animation: doitreverse 4s infinite;
@@ -19,7 +19,7 @@
     content: "";
     height: 100%;
     width: 100%;
-    border: 1px solid #b69f2c;
+    border: 1px solid var(--primary);
     border-radius: 50%;
     position: absolute;
     animation: doit 4s infinite;
@@ -59,8 +59,8 @@
     height: 50%;
     width: 50%;
     border-radius: 50%;
-    border: 1px solid #b69f2c;
-    background-color: #b69f2c;
+    border: 1px solid var(--primary);
+    background-color: var(--primary) !important;
     position: absolute;
     left: 25%;
     top: 25%;

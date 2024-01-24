@@ -20,7 +20,7 @@ const Navigation = () => {
             Our Products
           </NavLink>
           <NavLink as={Link} to="/reviews" className="nav-link text-warning1">
-            Give us a review
+            Feedbacks
           </NavLink>
           <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1">
             Privacy Policy

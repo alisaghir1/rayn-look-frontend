@@ -58,10 +58,10 @@ const Home = () => {
         </div>
       </div>
     </div>
-    <div className='m-5 d-flex ' style={{borderBottom: '1px solid #b69f2c'}}></div>
+    <div className='m-5 d-flex ' style={{borderBottom: '1px solid `var(--primary)`'}}></div>
     <p className='text-lighter opacity-50 m-2'>COLOURED CONTACT LENSES</p>
     <div className='d-flex justify-content-between mx-2 my-5'>
-      <p style={{borderBottom: '1px solid #b69f2c'}}>WITH <span style={{color: '#b69f2c'}}>POWER</span></p>
+      <p style={{borderBottom: '1px solid `var(--primary)`'}}>WITH <span style={{color:`var(--primary)`}}>POWER</span></p>
       <button className='btn btn-warning bg-warning1 bg-md-none p-3 h-50' >SHOP NOW</button>
     </div>
     <div className='my-5 d-flex gap-2'>
@@ -75,13 +75,13 @@ const Home = () => {
           </div>
       ))}
     </div>
-    <div className=' w-100 d-flex flex-column flex-md-row py-5 align-items-baseline justify-content-around text-black gap-5' style={{borderBottom: '1px solid #b69f2c', borderTop: '1px solid #b69f2c'}}>
+    <div className=' w-100 d-flex flex-column flex-md-row py-5 align-items-baseline justify-content-around text-black gap-5' style={{borderBottom: '1px solid `var(--primary)`', borderTop: '1px solid `var(--primary)`'}}>
       <p><span className='p-2 text-warning1'><FaPlane /></span>WORLDWIDE SHIPPING</p>
       <p><span className='p-2 text-warning1'><IoMedalOutline /></span>BEST RATINGS IN ALL ACROSS LEBANON</p>
       <p><span className='p-2'><ReactCountryFlag countryCode="US" svg  /></span>MADE IN USA</p>
     </div>
     <div className='d-flex justify-content-between mx-2 my-5'>
-      <p style={{borderBottom: '1px solid #b69f2c'}}>WITHOUT <span style={{color: '#b69f2c'}}>POWER</span></p>
+      <p style={{borderBottom: '1px solid `var(--primary)`'}}>WITHOUT <span style={{color: `var(--primary)`}}>POWER</span></p>
       <button className='btn btn-warning bg-warning1 bg-md-none p-3 h-50' >SHOP NOW</button>
     </div>
     {productLoading ? (<EyeLoader />) : (
@@ -98,7 +98,7 @@ const Home = () => {
     </div>
     )}
     <div className='py-5'>
-      <p className='py-5 m-2' style={{fontSize: '2rem', borderTop: '1px solid #b69f2c'}}>OUR BEUATIFULL CUSTOMERS</p>
+      <p className='py-5 m-2' style={{fontSize: '2rem', borderTop: '1px solid `var(--primary)`'}}>OUR BEUATIFULL CUSTOMERS</p>
       </div>
       <div className='d-flex gap-5 justify-content-around my-5'>{reviews.map((review,index) => (
       <div className='d-flex flex-column gap-5 border p-5 w-100' key={index}>
