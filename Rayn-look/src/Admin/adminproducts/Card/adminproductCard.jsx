@@ -87,10 +87,13 @@ const Adminproductcard = ({data, onDelete}) => {
                 <Modal.Body>
                 <Form >
                 <Form.Group controlId="formName">
-                        <Carousel controls={true} indicators={true} interval={null}>
+                        <Carousel controls={true} indicators={false} interval={null}>
                             {data.Image.map((image, index) => (
                                 <Carousel.Item key={index}>
                                     <img className="imgupdate" src={`http://localhost:8080/${image}`} alt="" />
+                                    <Button variant="danger" className="DeleteImageButton" >
+                                        Delete Image
+                                    </Button>
                                 </Carousel.Item>
                             ))}
                         </Carousel>
@@ -136,25 +139,6 @@ const Adminproductcard = ({data, onDelete}) => {
                             multiple={true}
                             // onChange={(event) => setCreationImages(event.target.files)}
                         />
-                    </Form.Group>
-                    <Form.Group controlId="formCategory">
-                        <Form.Label>Choose Category</Form.Label>
-                        <Dropdown onSelect={(eventKey) => {
-                            const selectedCategory = categories.find(category => category._id === eventKey);
-                            setCreationCategory(selectedCategory._id);
-                            setCategoryButtonName(selectedCategory.Name);
-                            }}>
-                            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                {CategorybuttonName}
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                {categories.map((category, index) => (
-                                    <Dropdown.Item key={index} eventKey={category._id}>
-                                        {category.Name}
-                                    </Dropdown.Item>
-                                ))}
-                            </Dropdown.Menu>
-                        </Dropdown>
                     </Form.Group>
                     <Button variant="primary mt-3" className="SubmitButton" type="submit" >
                         Submit
