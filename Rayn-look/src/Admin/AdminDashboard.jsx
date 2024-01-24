@@ -7,6 +7,7 @@ import AdminHome from './adminhome/adminhome';
 import Adminproducts from './adminproducts/adminproducts';
 import Adminorders from './adminorders/adminorders';
 import Adminreviews from './adminreviews/adminreviews';
+import { CiLogout } from "react-icons/ci";
 import logo from "../assets/images/rayn-look-logo1.png"
 const AdminDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
@@ -30,6 +31,10 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.clear(); 
+    window.location.href = "/adminlogin"; 
+  };
   return (
     <div className="Admin-Dashboard">
       <div className="Admin-sidebar">
@@ -67,6 +72,10 @@ const AdminDashboard = () => {
           <VscPreview className="Admin-icons" />
           <h2>Reviews</h2>
         </div>
+        <div className="Admin-sidebar-section" onClick={handleLogout}>
+        <CiLogout className="Admin-icons" />
+        <h2>Logout</h2>
+      </div>
       </div>
 
       <div className="Admin-Display">{renderSelectedComponent()}</div>

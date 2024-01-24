@@ -1,10 +1,12 @@
 import './App.css'
 import AdminDashboard from './Admin/AdminDashboard'
+
 import { BrowserRouter, Routes, Route, Outlet, Navigate } from 'react-router-dom'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Navbar from './components/Navbar'
-
+import AdminLogin from './Admin/Adminlogin'
+import autheslice from './Admin/adminauthentication/autheslice'
 
 const Layout = () => {
   return(
@@ -17,6 +19,7 @@ const Layout = () => {
 }
 
 function App() {
+const token = localStorage.getItem('token')
 
   return (
     <BrowserRouter>
@@ -29,7 +32,9 @@ function App() {
         <Route />
         <Route />
       </Route>
-      <Route path='/Admin' element={< AdminDashboard/>}></Route>
+
+          <Route path='adminlogin' element={<AdminLogin />} />
+          <Route path='admin' element={token ? <AdminDashboard /> : <Navigate to={'/adminlogin'} />} />
     </Routes>
     </BrowserRouter>
   )
