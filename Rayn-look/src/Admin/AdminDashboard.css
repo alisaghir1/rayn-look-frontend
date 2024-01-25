@@ -46,7 +46,7 @@ height: 20%;
   height: 96%;
   margin: auto;
   background-color: white ;
-  border-radius: 4%;
+  border-radius: 3%;
   overflow: scroll;
 }
 .Admin-Display::-webkit-scrollbar {
