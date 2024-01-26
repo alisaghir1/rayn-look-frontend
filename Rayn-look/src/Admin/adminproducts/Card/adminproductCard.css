@@ -8,14 +8,14 @@
     height: 360px;
     width: 500px;
     /* margin-left: 7%; */
-    margin-bottom: 5%;
+    margin-bottom: 5%; 
 }
 
 .card {
     --font-color: #323232;
     width: 250px;
     height: 350px;
-    border-radius: 20px;
+    border-radius: 3%;
     /* box-shadow: -9px 9px 18px #5a5a5a,
                 9px -9px 18px #727272; */
     display: flex;

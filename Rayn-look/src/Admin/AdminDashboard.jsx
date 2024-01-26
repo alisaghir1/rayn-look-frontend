@@ -7,6 +7,7 @@ import AdminHome from './adminhome/adminhome';
 import Adminproducts from './adminproducts/adminproducts';
 import Adminorders from './adminorders/adminorders';
 import Adminreviews from './adminreviews/adminreviews';
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import logo from "../assets/images/rayn-look-logo1.png"
 import Swal from 'sweetalert2';
@@ -57,7 +58,7 @@ const handleLogout = () => {
           className={`Admin-sidebar-section ${selectedComponent === 'Dashboard' ? 'selected' : ''}`}
           onClick={() => handleSidebarClick('Dashboard')}
         >
-          <HiMiniShoppingBag className="Admin-icons" />
+          <MdOutlineSpaceDashboard className="Admin-icons" />
           <h2>Dashboard</h2>
         </div>
 

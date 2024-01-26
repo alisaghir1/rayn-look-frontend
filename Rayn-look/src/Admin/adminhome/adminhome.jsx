@@ -3,7 +3,7 @@ import "./adminhome.css"
 import   Adminreviews  from "../adminreviews/adminreviews"
 import useReviewCount from "../../hooks/reviewscounterhook"
 import useProductCount from "../../hooks/productcounterhook"
-import useOrderCount from "../../hooks/ordervounterhook"
+import useOrderCount from "../../hooks/ordercounterhook"
 const Adminhome = () => {
     const reviewCount = useReviewCount();
     const productCount = useProductCount()

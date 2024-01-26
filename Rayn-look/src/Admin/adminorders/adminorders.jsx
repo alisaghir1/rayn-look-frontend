@@ -3,7 +3,38 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Adminordersrow from "./adminordersrow";
 import TextField from "@mui/material/TextField";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const Adminorders = () => {
+
+// const [orders,setorders] = useState()
+
+// useEffect(() => {
+//   fetchOrders();
+// }, [orders]);
+
+
+
+// const fetchOrders = async () => {
+//   try {
+//   const response = await axios.get(`http://localhost:8080/Order`,
+//   // {
+//   //     headers: {
+//   //       Authorization: `Bearer ${user.token}`,
+//   //     },
+//   //   }
+//     );
+//   // console.log(userId)
+//   const data = response.data;
+//   console.log(data);
+//   setorders(data);
+//   // console.log(data)
+//   } catch (error) {
+//   console.log(error);
+//   setorders(null);
+//   }
+// };
   
     return(
   
