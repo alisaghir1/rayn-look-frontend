@@ -2,83 +2,162 @@ import React from "react";
 import { useState, useEffect } from "react";
 import useProductsHook from "../hooks/useProductsHook";
 import useReviesHook from "../hooks/useReviewsHook";
+import axios from 'axios';
+
 
 const Feedbacks = () => {
 
+const [firstname , setfirstname] = useState("") 
+const [lastname , setlastname] = useState("")
+const [email , setemail] = useState("")
+const [phonenumber, setphonenumber] = useState("")
+const [Message, setMessage] = useState("")
+
+// const userInfo = {
+//   firstname: 'John',
+//   lastname: 'Doe',
+//   email: 'john.doe@example.com',
+//   phonenumber: '1234567890'
+// };
+
+// const postData = {
+//   userInfo,
+//   message: 'Your message here'
+// };
+
+// axios.post('http://localhost:8080/yourEndpoint', postData)
+//   .then(response => {
+//     // Handle the response data here
+//   })
+//   .catch(error => {
+//     // Handle any errors here
+//   });
+const handleSubmit = async (event) =>{
+  event.preventDefault()
+  console.log("submitted")
+if( !firstname || !lastname || !email || !phonenumber ||!Message){
+  console.log("bruh")}
+
+else {
+  const userInfo = {
+    firstname,
+    lastname,
+    email,
+    phonenumber,
+  };
+
+  const postData = {
+    userInfo,
+    Message,
+  };
+
+
+  try {
+    console.log(postData.userInfo)
+    const response = await axios.post(
+    `http://localhost:8080/review`,
+    postData
+    );
+    console.log(response);
+} catch (error) {
+    console.log(error);
+}
+
+
+}
+
+
+}
+
+
+
+
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: 'var(--primary)' }}>
+    <section
+      className="h-100 h-custom"
+      style={{
+        backgroundImage: `url('https://wallpapers.com/images/hd/london-in-vintage-hd-ofv81tqbziib2ftk.jpg')`,
+        backgroundColor: "rgba(255, 255, 255, 0.5)", 
+      }}
+    >
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-8 col-xl-6">
             <div className="card rounded-3">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp"
+                src="https://images.ctfassets.net/u4vv676b8z52/3eSqiYDD8r4CvoCoOUMjvj/a289de057e4426ed6976e66e51aed9fe/common-eye-color-678x446.gif?fm=jpg&q=80"
                 className="w-100"
                 style={{ borderTopLeftRadius: '.3rem', borderTopRightRadius: '.3rem' }}
                 alt="Sample photo"
               />
-              <div className="card-body p-4 p-md-5">
+              <div className="card-body  d-flex flex-column align-items-center ">
                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">FeedBack</h3>
 
-                <form className="row">
-                <div className="row">
-                    <div className="col-md-6 mb-4">
+                <form className="row m-auto" onSubmit={handleSubmit}>
+                  <div className="d-flex justify-content-evenly w-100  ">
+                <div>
+                    <div className="mb-4">
                       <div className="form-outline">
-                        <label htmlFor="firstname" className="form-label">
+                        <label htmlFor="firstname" className="form-label d-flex justify-content-center ">
                           First Name
                         </label>
-                        <input type="text" className="form-control" id="firstname" required/>
+                        <input type="text" className="form-control" id="firstname" required
+                        onChange={(event) => setfirstname(event.target.value)}/>
                       </div>
                     </div>
                   
                   </div>
 
-                  <div className="row">
-                    <div className="col-md-6 mb-4">
+                  <div>
+                    <div className="mb-4">
                       <div className="form-outline">
-                        <label htmlFor="lastname" className="form-label">
+                        <label htmlFor="lastname" className="form-label d-flex justify-content-center">
                           Last Name
                         </label>
-                        <input type="text" className="form-control" id="lastname" required/>
+                        <input type="text" className="form-control" id="lastname" required
+                                                onChange={(event) => setlastname(event.target.value)}/>
                       </div>
                     </div>
-                  
+                    </div>
                   </div>
-
+                  <div className=" d-flex justify-content-evenly ">
                   <div className="row mb-4">
-                    <div className="col-md-6">
+                    <div className="">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="email">
+                        <label className="form-label d-flex justify-content-center" htmlFor="email ">
                           Email
                         </label>
-                        <input type="email" id="email" className="form-control" placeholder="Example@gmail.com" required/>
+                        <input type="email" id="email" className="form-control" placeholder="Example@gmail.com" required
+                                                onChange={(event) => setemail(event.target.value)}/>
                       </div>
                     </div>
                   </div>
 
                   <div className="row mb-4">
-                    <div className="col-md-6">
+                    <div className="">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="phonenumber">
+                        <label className="form-label d-flex justify-content-center" htmlFor="phonenumber">
                           Phone Number
                         </label>
-                        <input type="tel" id="phonenumber" className="form-control" pattern="[0-9]{3}-[0-9]{8}" placeholder="961-12345678" required/>
+                        <input type="tel" id="phonenumber" className="form-control" pattern="[0-9]{8}" placeholder="12345678" required
+                                                onChange={(event) => setphonenumber(event.target.value)}/>
                       </div>
                     </div>
                   </div>
-
-                  <div className="row mb-4 mb-md-5">
-                    <div className="col-md-6">
+                  </div>
+                  <div className="row mb-4 mb-md-5 m-auto">
+                    <div className="">
                       <div className="form-outline">
-                        <label className="form-label" htmlFor="feedback">
+                        <label className="form-label d-flex justify-content-center" htmlFor="feedback">
                           Feedback
                         </label>
-                        <input type="text" id="feedback" className="form-control" required/>
+                        <textarea id="feedback" rows="6"  className="form-control" required
+                                                onChange={(event) => setMessage(event.target.value)}/>
                       </div>
                     </div>
                   </div>
 
-                  <button type="submit" className="btn btn-warning bg-warning1 p-3 text-black">
+                  <button type="submit"  className="btn btn-warning bg-warning1 p-3 text-black">
                     Submit
                   </button>
                 </form>
