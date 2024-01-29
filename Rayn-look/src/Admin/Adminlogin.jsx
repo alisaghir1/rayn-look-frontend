@@ -64,7 +64,7 @@ const AdminLogin = () => {
             <label htmlFor="password" className="form-label">Password</label>
             <input type="password" className="form-control border border-primary" id="password" name="password" />
           </div>
-          <p className="small"><a className="text-primary" href="forget-password.html">Forgot password?</a></p>
+          <br />
           <div className="d-grid">
             <button className="btn btn-primary" type="submit">Login</button>
           </div>

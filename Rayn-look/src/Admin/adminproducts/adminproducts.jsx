@@ -19,9 +19,7 @@ const Adminproducts = () => {
     const [creationDescription, setCreationDescription] = useState("");
 
     const [CategorybuttonName, setCategoryButtonName] = useState("Category")
-    const handleDelete = () => {
-        fetchProducts();
-    };
+
 
     const fetchCategories = async () => {
         try {
@@ -77,6 +75,7 @@ const Adminproducts = () => {
 
     const fetchProducts = async () => {
         try {
+            console.log("kousaa");
         const response = await axios.get(`http://localhost:8080/Product`,
         // {
         //     headers: {
@@ -97,7 +96,7 @@ const Adminproducts = () => {
     useEffect(() => {
         fetchProducts();
         fetchCategories();
-    }, [products]);
+    }, []);
 
     return(
         <>
@@ -108,7 +107,7 @@ const Adminproducts = () => {
                         <Adminproductcard
                         key = {product._id}
                         data={product}
-                        onDelete={() => handleDelete()}
+                        onDelete={() => fetchProducts()}
                         />
                         ))
                     ) : (
