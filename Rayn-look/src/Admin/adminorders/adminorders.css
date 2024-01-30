@@ -39,14 +39,12 @@
   
   
 
-  .order-Edit-Form {
+  .admin-order-options{
+    padding-top: 11px;
     display: flex;
-    flex-direction: column;
-
-
+    gap: 10px;
   }
-  
 
-  .order-Edit-Form button {
-margin-top: 20px;
+  .admin-order-options button {
+border-radius: 6px;
   }

@@ -136,12 +136,28 @@
     text-transform: uppercase;
     color: var(--color);
     z-index: 1;
-    width: 10%;
-    height: 5%;
-    margin-left: 44%;
-    margin-top: 5%;
+    width: 15%;
+    height: 40px;
+    margin-left: 42%;
+
+
 }
-   
+
+.admin-product-search{
+    width: 30%;
+}
+
+
+
+   .container-create-search{
+display: flex;
+align-items: center;
+    margin-top: 2%;
+    gap: 50px;
+    
+   }
+
+
 .admin-Main-Create::before, .admin-Main-Create::after {
     content: '';
     display: block;

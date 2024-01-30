@@ -10,7 +10,7 @@ const Adminreviews = () => {
     useEffect(() => {
         const fetchingreviews = () => {
           axios
-            .get(`http://localhost:8080/review`)
+            .get('http://localhost:8080/review/')
             .then((res) => {
               setreview(res.data);
               setReviewCount(res.data.length)
@@ -22,7 +22,7 @@ const Adminreviews = () => {
               setReviewCount(0);
             });
         };
-    
+
         fetchingreviews();
       }, []);
 
@@ -38,7 +38,7 @@ const Adminreviews = () => {
 
     return(
         <div className="Admin-display-container">
-              <div className="admin-reviews-search-bar">        
+              <div className="admin-reviews-search-bar">
         <TextField 
           id="outlined-basic"
           variant="outlined"

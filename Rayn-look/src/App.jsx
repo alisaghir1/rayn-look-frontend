@@ -7,7 +7,7 @@ import Home from './pages/Home'
 import Navbar from './components/Navbar'
 import AdminLogin from './Admin/Adminlogin'
 import autheslice from './Admin/adminauthentication/autheslice'
-
+import { useSelector } from 'react-redux'
 const Layout = () => {
   return(
     <>
@@ -19,8 +19,8 @@ const Layout = () => {
 }
 
 function App() {
-const token = localStorage.getItem('token')
-
+// const token = localStorage.getItem('token')
+const token  = useSelector((state) => state.auth)
   return (
     <BrowserRouter>
     <Routes>

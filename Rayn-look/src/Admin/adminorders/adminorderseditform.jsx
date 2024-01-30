@@ -1,63 +1,109 @@
-import logo from "../../assets/images/rayn-look-logo1.png"
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
-const Ordersedit = ({onClose}) => {
-    return(
-        
-    
-        <div className='Whole-order-edit-form'>
-        <img src={logo} />
-         <form  className='order-Edit-Form'>
+const OrdersEdit = ({ onHide, show }) => {
 
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="formControlLg">Name</label>
-  <input type="text" id="formControlLg" class="form-control form-control-lg" />
+  const [newData, setNewData] = useState({
+    Name: "",
+    Price: "",
+    Description: "",
+  });
 
-</div>
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onHide();
+  };
 
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="form12">Location</label>
-  <input type="text" id="form12" class="form-control" />
+  return (
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>Update Order</Modal.Title>
+      </Modal.Header> 
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formName">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="Name"
+              value={newData.Name}
+              placeholder="Enter Name"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formPrice">
+            <Form.Label>Location</Form.Label>
+            <Form.Control
+              type="text"
+              name="Price"
+              // value={newData.Price}
+              placeholder="Enter location"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formPrice">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type="text"
+              name="Price"
+              value={newData.Price}
+              placeholder="Enter Phone Number"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formPrice">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="Price"
+              // value={newData.Price}
+              placeholder="Enter Email"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formPrice">
+            <Form.Label>Date</Form.Label>
+            <Form.Control
+              type="date"
+              name="Price"
+              value={newData.Price}
+              placeholder="Enter Date"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Form.Group controlId="formDescription">
+            <Form.Label>Total Amount</Form.Label>
+            <Form.Control
+              type="number"
+              name="Description"
+              value={newData.Description}
+              placeholder="Enter Total Amount"
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+          <Button variant="primary mt-3" className="SubmitButton" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Modal.Body>
+    </Modal>
+  );
+};
 
-</div>
-
-
-
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="form12">Phone Number</label>
-  <input type="tel" id="form12" class="form-control" />
-
-</div>
-
-
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="form12">Email</label>
-  <input type="text" id="form12" class="form-control" />
-
-</div>
-
-
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="form12">Date</label>
-  <input type="date" id="form12" class="form-control" />
-
-</div>
-
-
-
-<div class="form-outline" data-mdb-input-init>
-<label class="form-label" for="form12">Total Amount</label>
-  <input type="number" id="form12" class="form-control" />
-
-</div>
-
-
-           <button type="submit" className="btn btn-primary">Submit</button>
-           <button type="button" onClick={onClose}>Close</button>
-         </form>
-      
-       </div>
-    ) 
-}
-
-export default Ordersedit
+export default OrdersEdit;

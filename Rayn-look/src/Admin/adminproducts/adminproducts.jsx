@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
-
+import TextField from "@mui/material/TextField";
 const Adminproducts = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ const Adminproducts = () => {
     const [creationPrice, setCreationPrice] = useState("");
     const [creationImages, setCreationImages] = useState("");
     const [creationDescription, setCreationDescription] = useState("");
-
+    const [searchTerm, setSearchTerm] = useState("");
     const [CategorybuttonName, setCategoryButtonName] = useState("Category")
 
 
@@ -93,6 +93,29 @@ const Adminproducts = () => {
         }
     };
 
+
+    const handleProductUpdate = async (ProductId) => {
+        try {
+            console.log("kousaa");
+        const response = await axios.get(`http://localhost:8080/Product`,
+        // {
+        //     headers: {
+        //       Authorization: `Bearer ${user.token}`,
+        //     },
+        //   }
+          );
+        // console.log(userId)
+        const data = response.data;
+
+        } catch (error) {
+        console.log(error);
+        setProducts(null);
+        }
+    };
+
+
+
+
     useEffect(() => {
         fetchProducts();
         fetchCategories();
@@ -100,14 +123,30 @@ const Adminproducts = () => {
 
     return(
         <>
+        <div className="container-create-search">
             <button className="admin-Main-Create" onClick={() => setShow(true)}>Create</button>
+            <div className="admin-product-search">
+        <TextField 
+          id="outlined-basic"
+          variant="outlined"
+          fullWidth
+          label="Search"
+          value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+        />
+ </div>
+ </div>
+
             <div className="admin-product-container">
                 {products && products.length > 0 ? (
-                        products.map((product) => (
+                        products.filter((item) =>
+                        (searchTerm === "" ||
+                          (item.Name && item.Name.toLowerCase().includes(searchTerm.toLowerCase())))
+                      ).map((product) => (
                         <Adminproductcard
                         key = {product._id}
                         data={product}
                         onDelete={() => fetchProducts()}
+                        // onUpdate = {() => handleProductUpdate(product._id)}
                         />
                         ))
                     ) : (

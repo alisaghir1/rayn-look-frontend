@@ -4,15 +4,10 @@ import { useState } from 'react';
 import Ordersedit from './adminorderseditform'; // Assuming this is the correct path to your Ordersedit component
 
 const Adminordersrow = () => {
-  const [showPopup, setShowPopup] = useState(false);
 
-  const handleEdit = () => {
-    setShowPopup(true);
-  };
+  const [modalShow, setModalShow] = useState(false); // Change the state variable name
 
-  const handleClose = () => {
-    setShowPopup(false);
-  };
+
 
 
   return (
@@ -31,21 +26,25 @@ const Adminordersrow = () => {
             <Dropdown.Item href="#/action-3">Product 3</Dropdown.Item>
           </DropdownButton>
         </td>
-        <td>
-          <Dropdown>
+        <td className='admin-order-options'>
+
+
+          <button onClick={() => setModalShow(true)} > Edit</button>
+          <button>Delete</button>
+          {/* <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Options
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1" onClick={handleEdit}>
+            <Dropdown.Item href="#/action-1" onClick={() => setModalShow(true)}>
                 Edit
               </Dropdown.Item>
               <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
+          </Dropdown> */}
         </td>
       </tr>
-      {showPopup && <Ordersedit onClose={handleClose} />}
+      <Ordersedit onHide={() => setModalShow(false)} show={modalShow} />
     </>
   );
 };
