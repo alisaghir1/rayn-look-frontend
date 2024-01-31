@@ -19,11 +19,12 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 
-import { Grid, Pagination } from "swiper/modules";
+import { Grid } from "swiper/modules";
 //
 
 const Home = () => {
   const { products, productLoading } = useProductsHook();
+  console.log(products)
 
   const navigate = useNavigate();
 
@@ -107,9 +108,6 @@ const Home = () => {
         <p style={{ borderBottom: "1px solid #b69f2c" }}>
           WITH <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
-        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50" onClick={handleNavigate}>
-          SHOP NOW
-        </button>
       </div>
       <div className="my-5 d-flex gap-2">
       {productLoading ? (
@@ -143,7 +141,7 @@ const Home = () => {
          }}
         >
           {products
-            .filter((product) => product.Category.Name === "with-power")
+            .filter((product) => product.Category && product.Category.Name === "with-power")
             .map((product, index) => (
               <SwiperSlide key={index} className="bg-transparent">
               <Link to={'/single-product'} state={{product, productLoading}}>
@@ -192,9 +190,6 @@ const Home = () => {
         <p style={{ borderBottom: "1px solid #b69f2c" }}>
           WITHOUT <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
-        <button className="btn btn-warning bg-warning1 bg-md-none p-3 h-50" onClick={handleNavigate}>
-          SHOP NOW
-        </button>
       </div>
       {productLoading ? (
         <EyeLoader />
@@ -227,7 +222,7 @@ const Home = () => {
        }}
       >
         {products
-          .filter((product) => product.Category.Name === "without-power")
+          .filter((product) => product.Category && product.Category.Name === "without-power")
           .map((product, index) => (
             <SwiperSlide key={index} className="bg-transparent">
               <Link to={'/single-product'} state={{product, productLoading}}>

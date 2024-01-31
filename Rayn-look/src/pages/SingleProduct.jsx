@@ -3,6 +3,14 @@ import { useLocation } from "react-router-dom";
 import FrequentlyAsked from "./FrequentlyAsked";
 import EyeLoader from "../components/EyeLoader";
 import useProductsHook from "../hooks/useProductsHook";
+//import to use the cart globally from redux
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../Redux/CartSlice';
+
+//carousel for react
+import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 
 function SingleProduct() {
@@ -10,26 +18,43 @@ function SingleProduct() {
   const product = location?.state?.product;
   const {productLoading} = useProductsHook()
 
+
+  //dispatch to handle the type of the action
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+
+
   const containerStyle = {
     height: productLoading ? "100vh" : "100%",
   };
+
+  const renderSlides = product.Image.map((imageUrl, index) => (
+    <div key={index}>
+       <img
+         src={`http://localhost:8080/${imageUrl}`}
+         alt={`Product Image ${index + 1}`}
+         className="img-fluid rounded custom-image-single-product-page"
+         style={{ width: "800px", height: "600px" }}
+       />
+    </div>
+   ));
 
   
   return (
     <div style={containerStyle}>
     {productLoading ? (<EyeLoader />) : (
     <div className="container-fluid p-5">
-      <div className="d-flex gap-3">
+    <div class="d-flex flex-column flex-md-row gap-3">
         <div className="col-md-6">
-          <img
-            src={`http://localhost:8080/${product.Image[0]}`}
-            alt="Mayfair Ice"
-            className="img-fluid rounded"
-            style={{ width: "800px", height: "600px" }}
-          />
+        <Carousel showArrows={false} autoPlay={true} infiniteLoop={true}  showThumbs={false}>
+         {renderSlides}
+        </Carousel>
         </div>
         <div className="col-md-6">
-          <h1 className="display-4">{product.Name}</h1>
+          <h1 className="display-4 text-warning2">{product.Name}</h1>
           <h6 className="my-3">Price: {product.Price}$</h6>
           <p className="lead">{product.Description}</p>
           <p>
@@ -42,23 +67,13 @@ function SingleProduct() {
             actual photos taken on our customer eyes . No Photoshop!
           </p>
           <p>
-            Crystal-Clear Vision: Our lenses are engineered to provide sharp,
-            clear vision, ensuring you see the world with utmost clarity and
-            detail.
-          </p>
-          <p>
-            All-Day Comfort: Say goodbye to discomfort. These contact lenses are
-            made from breathable materials that keep your eyes feeling fresh and
-            hydrated throughout the day.
-          </p>
-          <p>
             Easy Handling: Designed for hassle-free application and removal, our
             lenses make your daily routine a breeze. Smooth edges and a
             user-friendly design ensure a seamless experience.
           </p>
           <h3>Length of Wear</h3>
           <p>1 Year: {product.Price}$</p>
-          <button className="btn bg-warning1 p-3">Add to Cart</button>
+          <button className="btn bg-warning1 p-3" onClick={() => handleAddToCart(product)}>Add to Cart</button>
         </div>
       </div>
       <div className="my-5 py-5">

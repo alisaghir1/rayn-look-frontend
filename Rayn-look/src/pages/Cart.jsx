@@ -1,0 +1,167 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaTimes } from 'react-icons/fa';
+
+
+// redux imports 
+import { useSelector } from 'react-redux';
+import { removeFromCart, updateQuantity } from '../Redux/CartSlice';
+import { useDispatch } from 'react-redux';
+
+const Cart = () => {
+ const cartItems = useSelector((state) => state.cart);
+ const dispatch = useDispatch();
+ const navigate = useNavigate();
+
+ const handleRemoveFromCart = (item) => {
+   dispatch(removeFromCart(item));
+ };
+
+ const handleIncrementQuantity = (item) => {
+  dispatch(updateQuantity({ productId: item._id, quantity: item.quantity + 1 }));
+};
+
+const handleDecrementQuantity = (item) => {
+  if (item.quantity > 1) {
+    dispatch(updateQuantity({ productId: item._id, quantity: item.quantity - 1 }));
+  }
+};
+
+const handleNavigate = () => {
+  navigate("/products")
+}
+
+ const totalPrice = cartItems.reduce((total, item) => total + item.Price * item.quantity, 0);
+
+ return (
+    <div className='m-5'>
+      {cartItems && cartItems.length === 0 ? (
+        <div className='d-flex flex-column align-items-center justify-content-center' style={{ height: '700px'}}>
+          <h1 className='opacity-75'>
+          You dont Have any Cart Items
+          </h1>
+          <button className='btn bg-warning1 p-3 my-4' onClick={handleNavigate}>Shop Now</button>
+          </div>
+      ) : (
+<section className="h-100">
+  <div className="container h-100 py-5">
+    <div className="row d-flex justify-content-center align-items-center h-100">
+      <div>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h3 className="fw-normal mb-0 text-warning2">Shopping Cart</h3>
+        </div>
+        {cartItems.map((item, index) => (
+          <div key={index} className="card rounded-3 mb-4">
+            <div className="card-body p-4">
+              <div className="row d-flex justify-content-between align-items-center gap-2">
+                <div className="col-md-2 col-lg-2 col-xl-2 d-flex" style={{ aspectRatio: '1'}}>
+                  <img
+                    src={`http://localhost:8080/${item.Image[0]}`}
+                    className="img-fluid rounded-3" alt="Cotton T-shirt"
+                    style={{objectFit: 'cover'}}
+                     />
+                </div>
+                <div className="col-md-3 col-lg-3 col-xl-3">
+                  <p className="lead fw-normal mb-2">{item.Name}</p>
+                  <p><span className="text-muted">{item.Description}</span></p>
+                </div>
+                <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+                  <button className="btn text-warning1 px-2" onClick={() => handleDecrementQuantity(item)}>
+                    <i className="fas fa-minus">-</i>
+                  </button>
+
+                  <input id="form1" min="0" name="quantity" value={item.quantity} type="text"
+                    className="form-control form-control-sm" />
+
+                  <button className="btn text-warning1 px-2" onClick={() => handleIncrementQuantity(item)}>
+                    <i className="fas fa-plus">+</i>
+                  </button>
+                </div>
+                <div className=" d-flex justify-content-between col-md-3 col-lg-2 col-xl-2 offset-lg-1 my-2">
+                  <h5 className="mb-0">Price: ${item.Price * item.quantity}</h5>
+                <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+                  <p className="text-danger" onClick={() => handleRemoveFromCart(item)}>
+                    <i className="text-warning2"><FaTimes /></i>
+                  </p>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        <div className="card">
+          <div className="card-body text-center">
+            <button type="button" className="btn bg-warning1 btn-block btn-lg w-100">Proceed to Pay the Total of: ${totalPrice}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+         )}
+    </div>
+ ); 
+};
+
+export default Cart;
+
+
+// <section className="h-100" style={{ backgroundColor: "#eee" }}>
+//   <div className="container h-100 py-5">
+//     <div className="row d-flex justify-content-center align-items-center h-100">
+//       <div className="col-10">
+//         <div className="d-flex justify-content-between align-items-center mb-4">
+//           <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
+//           <div>
+//             <p className="mb-0"><span className="text-muted">Sort by:</span> <a href="#!" className="text-body">price <i
+//                   className="fas fa-angle-down mt-1"></i></a></p>
+//           </div>
+//         </div>
+//         {cartItems.map((item, index) => (
+//           <div key={index} className="card rounded-3 mb-4">
+//             <div className="card-body p-4">
+//               <div className="row d-flex justify-content-between align-items-center">
+//                 <div className="col-md-2 col-lg-2 col-xl-2">
+//                   <img
+//                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+//                     className="img-fluid rounded-3" alt="Cotton T-shirt" />
+//                 </div>
+//                 <div className="col-md-3 col-lg-3 col-xl-3">
+//                   <p className="lead fw-normal mb-2">{item.Name}</p>
+//                   <p><span className="text-muted">{item.Description}</span></p>
+//                 </div>
+//                 <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
+//                   <button className="btn btn-link px-2" onClick={() => handleDecrementQuantity(item)}>
+//                     <i className="fas fa-minus"></i>
+//                   </button>
+
+//                   <input id="form1" min="0" name="quantity" value={item.quantity} type="number"
+//                     className="form-control form-control-sm" />
+
+//                   <button className="btn btn-link px-2" onClick={() => handleIncrementQuantity(item)}>
+//                     <i className="fas fa-plus"></i>
+//                   </button>
+//                 </div>
+//                 <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+//                   <h5 className="mb-0">${item.Price * item.quantity}</h5>
+//                 </div>
+//                 <div className="col-md-1 col-lg-1 col-xl-1 text-end">
+//                   <p href="#!" className="text-danger" onClick={() => handleRemoveFromCart(item)}>
+//                     <i className="fas fa-trash fa-lg"></i>
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         ))}
+//         <div className="card">
+//           <div className="card-body d-flex">
+//             <p>Total Price: {totalPrice}</p>
+//             <button type="button" className="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </section>

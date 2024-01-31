@@ -14,6 +14,7 @@ import Products from "./pages/Products";
 import Reviews from "./pages/Reviews";
 import FrequentlyAsked from "./pages/FrequentlyAsked";
 import SingleProduct from "./pages/SingleProduct";
+import Cart from "./pages/Cart";
 
 const Layout = () => {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/single-product" element={<SingleProduct />} />
+          <Route path="/Cart" element={<Cart />} />
           <Route />
         </Route>
       </Routes>

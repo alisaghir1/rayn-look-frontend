@@ -3,14 +3,21 @@ import { Navbar, Nav, NavLink } from 'react-bootstrap';
 import { Link,useNavigate } from 'react-router-dom';
 import i20 from '../assets/images/logo1.png'
 import { FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const navigate = useNavigate()
+  const cartItems = useSelector((state) => state.cart);
 
   const handleNavigate = () => {
     navigate('/')
   }
+  const handleCartNavigate = () => {
+    navigate('/Cart')
+  }
   
+  const totalQuantity = cartItems.length;
+
   return (
     <Navbar expand="lg"  className="px-5 navbar">
       <Navbar.Brand as={Link} to="/" className='d-flex justify-content-baseline'>
@@ -31,8 +38,9 @@ const Navigation = () => {
           <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1">
             Privacy Policy
           </NavLink>
-          <NavLink as={Link} to="/cart" className="nav-link text-warning1">
-        <FaShoppingCart />
+          <NavLink as={Link} to="/cart" className="nav-link text-warning3">
+        <FaShoppingCart  onClick={handleCartNavigate} /> | 
+         <span className="cart-counter"> {totalQuantity}</span>
     </NavLink>
         </Nav>
       </Navbar.Collapse>

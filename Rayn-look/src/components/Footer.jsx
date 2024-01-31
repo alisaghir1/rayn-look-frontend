@@ -5,6 +5,7 @@ import {
 import './components.css'
 import { Link } from 'react-router-dom';
 
+
 const Footer = () => {
  return (
    <footer
@@ -19,11 +20,11 @@ const Footer = () => {
          <span>Get connected with us on social networks:</span>
        </div>
        <div>
-         <a href="" className="text-warning1 me-4">
-           <FaFacebook />
+         <a href="https://www.facebook.com/p/Rayn-Look-100071182973185/" target="_blank" className="text-warning1 me-4">
+           <FaFacebook style={{fontSize: '20px'}}/>
          </a>
-         <a href="" className="text-warning1 me-4">
-           <FaInstagram />
+         <a href="https://www.instagram.com/rayn_look/?hl=en" target="_blank" className="text-warning1 me-4">
+           <FaInstagram style={{fontSize: '20px'}} />
          </a>
        </div>
      </section>
