@@ -32,8 +32,8 @@ const Navigation = () => {
           <NavLink as={Link} to="/products" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Our Products
           </NavLink>
-          <NavLink as={Link} to="/reviews" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
-            Give us a review
+          <NavLink as={Link} to="/feedbacks" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
+            Give us a feedback
           </NavLink>
           <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Privacy Policy

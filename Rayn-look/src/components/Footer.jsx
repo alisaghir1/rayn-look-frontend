@@ -55,7 +55,7 @@ const Footer = () => {
                <Link to={'/products'} className="text-dark">Our Products</Link>
              </p>
              <p>
-               <Link to={'/reviews'} className="text-dark">Give us a Review</Link>
+               <Link to={'/Feedbacks'} className="text-dark">Give us a feedback</Link>
              </p>
              <p>
                <Link to={'/privacy-policy'} className="text-dark">Privacy policy</Link>

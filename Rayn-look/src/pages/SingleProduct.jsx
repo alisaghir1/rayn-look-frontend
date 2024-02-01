@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 import FrequentlyAsked from "./FrequentlyAsked";
 import EyeLoader from "../components/EyeLoader";
 import useProductsHook from "../hooks/useProductsHook";
@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 //carousel for react
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import Swal from 'sweetalert2'
 
 
 
@@ -29,6 +31,17 @@ function SingleProduct() {
 
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
+    Swal.fire({
+      title: 'Added to cart.',
+      text:'want to view your cart?',
+      icon: "success",
+      confirmButtonText: "Yes",
+      cancelButtonText: 'No',
+      showCancelButton: true, 
+      preConfirm: () => {
+        window.location.href = '/cart';
+      },
+    });
   };
 
 
@@ -78,7 +91,7 @@ function SingleProduct() {
           </p>
           <h3>Length of Wear</h3>
           <p>1 Year: {product.Price}$</p>
-          <button  disabled={isInCart} className="btn bg-warning1 p-3" onClick={() => handleAddToCart(product)}> {isInCart ? "Added to Cart successfully" : "Add to Cart"}</button>
+          <button  disabled={isInCart} className="btn bg-warning1 p-3" onClick={() => handleAddToCart(product)}> {isInCart ? "Already in cart" : "Add to Cart"}</button>
         </div>
       </div>
       <div className="my-5 py-5">

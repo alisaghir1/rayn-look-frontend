@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 import { clearCart } from '../Redux/CartSlice';
 import { useNavigate } from 'react-router-dom';
-
+import Swal from 'sweetalert2';
 
 
 
@@ -38,6 +38,11 @@ const CheckoutPage = () => {
      const response = await axios.post('http://localhost:8080/order', userData)
      console.log(response)
      dispatch(clearCart());
+     await Swal.fire({
+      title: "Than you for your order!",
+      text: "Our delivery will contact you soon!",
+      icon: "success"
+    });
    }catch(err){
      console.log(err)
    }
@@ -91,7 +96,7 @@ const CheckoutPage = () => {
     <textarea placeholder='Please enter any additional information ' onChange={(e) => setAdditionalInformation(e.target.value)} className="form-control" id="form6Example7" rows="4"></textarea>
   </div>
   <div className='d-flex justify-content-start'>
-  <button  data-mdb-ripple-init type="submit" className="btn bg-warning1 btn-block mb-5 custom-checkout-page-button w-25 h-25">  {loading ? (
+  <button  data-mdb-ripple-init type="submit" className="btn bg-warning1 btn-block mb-5 custom-checkout-page-button w-100 h-25">  {loading ? (
     <div className="spinner-border text-dark" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
       <span className="visually-hidden">Loading...</span>
     </div>
