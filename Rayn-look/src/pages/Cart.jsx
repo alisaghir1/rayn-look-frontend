@@ -27,6 +27,11 @@ const handleDecrementQuantity = (item) => {
   }
 };
 
+const handleQuantityChange = (e, item) => {
+  const newQuantity = parseInt(e.target.value, 10) || 0; 
+  dispatch(updateQuantity({ productId: item._id, quantity: newQuantity }));
+};
+
 const handleNavigate = () => {
   navigate("/products")
 }
@@ -74,7 +79,8 @@ const handleNavigateToCheckout = () => {
                     <i className="fas fa-minus">-</i>
                   </button>
 
-                  <input id="form1" min="0" name="quantity" value={item.quantity} type="text"
+                  <input id="form1" min="0" name="quantity" onChange={(e) => handleQuantityChange(e, item)}
+                  value={item.quantity}  type="text"
                     className="form-control form-control-sm" />
 
                   <button className="btn text-warning1 px-2" onClick={() => handleIncrementQuantity(item)}>

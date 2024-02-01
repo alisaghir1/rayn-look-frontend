@@ -35,11 +35,14 @@ function SingleProduct() {
       title: 'Added to cart.',
       text:'want to view your cart?',
       icon: "success",
+      showDenyButton: true, 
       confirmButtonText: "Yes",
-      cancelButtonText: 'No',
-      showCancelButton: true, 
+      denyButtonText: 'Continue shopping',
       preConfirm: () => {
         window.location.href = '/cart';
+      },
+      preDeny: () => {
+        window.location.href = '/products';
       },
     });
   };
