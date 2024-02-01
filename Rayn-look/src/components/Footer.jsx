@@ -3,12 +3,14 @@ import {
  FaInstagram,
 } from 'react-icons/fa';
 import './components.css'
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
  return (
    <footer
      className="text-center text-lg-start text-dark"
-     style={{backgroundColor: "white"}}
+     style={{backgroundColor: "transparent"}}
    >
      <section
        className="d-flex justify-content-between p-4 text-white"
@@ -18,11 +20,11 @@ const Footer = () => {
          <span>Get connected with us on social networks:</span>
        </div>
        <div>
-         <a href="" className="text-warning1 me-4">
-           <FaFacebook />
+         <a href="https://www.facebook.com/p/Rayn-Look-100071182973185/" target="_blank" className="text-warning1 me-4">
+           <FaFacebook style={{fontSize: '20px'}}/>
          </a>
-         <a href="" className="text-warning1 me-4">
-           <FaInstagram />
+         <a href="https://www.instagram.com/rayn_look/?hl=en" target="_blank" className="text-warning1 me-4">
+           <FaInstagram style={{fontSize: '20px'}} />
          </a>
        </div>
      </section>
@@ -47,19 +49,16 @@ const Footer = () => {
                style={{width: "60px", backgroundColor: "black", height: "2px"}}
              />
              <p>
-               <a href="#!" className="text-dark">Home</a>
+               <Link to={'/'} className="text-dark">Home</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Our Products</a>
+               <Link to={'/products'} className="text-dark">Our Products</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Give us a Review</a>
+               <Link to={'/Feedbacks'} className="text-dark">Give us a feedback</Link>
              </p>
              <p>
-               <a href="#!" className="text-dark">Privacy policy</a>
-             </p>
-             <p>
-               <a href="#!" className="text-dark">F&QS</a>
+               <Link to={'/privacy-policy'} className="text-dark">Privacy policy</Link>
              </p>
            </div>
 

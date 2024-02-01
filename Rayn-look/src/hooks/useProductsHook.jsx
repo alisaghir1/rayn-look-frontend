@@ -3,21 +3,21 @@ import axios from 'axios'
 
 const useProductsHook = () => {
     const [products, setProducts] = useState([])
-    const [loading , setLoading] = useState(false)
+    const [productLoading , setProductLoading] = useState(true)
 
     useEffect(() => {
-        setLoading(true)
+        setProductLoading(true)
         axios.get('http://localhost:8080/product')
         .then((response) => {
             setProducts(response.data)
-            setLoading(false)
+            setProductLoading(false)
         }).catch((error) => {
             console.log(error)
-            setLoading(false)
+            setProductLoading(false)
         })
      }, [])
      
-  return products
+  return {products, productLoading}
 }
 
 export default useProductsHook

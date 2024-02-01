@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setToken } from './adminauthentication/autheslice';
-import axios from 'axios';
-import "./Adminlogin.css"
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setToken } from "../Redux/autheslice";
+import axios from "axios";
+import "./Adminlogin.css";
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const [redirected, setRedirected] = useState(false);
 
   const handleLogin = async () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
     console.log("handleLogin function called with username:", username);
 
     try {
       const response = await axios.post("http://localhost:8080/Admin/login", {
         username,
-        password
+        password,
       });
 
       console.log("Received response status from login API:", response.status);
@@ -33,7 +33,7 @@ const AdminLogin = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       dispatch(setToken(JSON.parse(token)));
       setRedirected(true);
@@ -53,29 +53,57 @@ const AdminLogin = () => {
       <div className="container py-5 h-100">
         <div className="row d-flex align-items-center justify-content-center h-100">
           <div className="col-md-8 col-lg-7 col-xl-6">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid admin-image" alt="Phone image" />
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+              className="img-fluid admin-image"
+              alt="Phone image"
+            />
           </div>
           <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              handleLogin();
-            }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleLogin();
+              }}
+            >
               <div className="form-outline mb-4">
-                <input type="text" id="username" className="form-control form-control-lg " />
-                <label className="form-label admin-login-label" htmlFor="username">Username</label>
+                <input
+                  type="text"
+                  id="username"
+                  className="form-control form-control-lg "
+                />
+                <label
+                  className="form-label admin-login-label"
+                  htmlFor="username"
+                >
+                  Username
+                </label>
               </div>
               <div className="form-outline mb-4">
-                <input type="password" id="password" className="form-control form-control-lg" />
-                <label className="form-label admin-login-label" htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  className="form-control form-control-lg"
+                />
+                <label
+                  className="form-label admin-login-label"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
               </div>
-              <button type="submit" className="btn btn-primary btn-lg btn-block">Sign in</button>
-
+              <button
+                type="submit"
+                className="btn btn-primary btn-lg btn-block"
+              >
+                Sign in
+              </button>
             </form>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default AdminLogin;
