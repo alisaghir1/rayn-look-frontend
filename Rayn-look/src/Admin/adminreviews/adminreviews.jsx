@@ -14,7 +14,7 @@ const Adminreviews = () => {
             .then((res) => {
               setreview(res.data);
               setReviewCount(res.data.length)
-              console.log(res);
+              console.log("this is the review data",res.data);
             })
             .catch((err) => {
               console.log(err);
@@ -22,7 +22,6 @@ const Adminreviews = () => {
               setReviewCount(0);
             });
         };
-
         fetchingreviews();
       }, []);
 

@@ -29,6 +29,7 @@
     "react-scroll-progress-bar": "^1.1.13",
     "react-swiper": "^0.1.5",
     "react-toastify": "^10.0.4",
+    "recharts": "^2.11.0",
     "redux": "^5.0.1",
     "sweetalert2": "^11.10.4",
     "swiper": "^11.0.5",

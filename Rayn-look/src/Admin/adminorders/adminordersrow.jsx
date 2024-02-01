@@ -1,50 +1,65 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useState } from 'react';
-import Ordersedit from './adminorderseditform'; // Assuming this is the correct path to your Ordersedit component
+import Swal from 'sweetalert2'; // Import SweetAlert library
+import axios from "axios";
 
-const Adminordersrow = () => {
+const Adminordersrow = ({data,onDelete}) => {
+  const ondelete = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    });
 
-  const [modalShow, setModalShow] = useState(false); // Change the state variable name
-
-
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(`http://localhost:8080/Order/${data._id}`);
+        if (response.status !== 200) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        await Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+        onDelete(data._id);
+      } catch (error) {
+        console.error('There was an error!', error);
+      }
+    }
+  };
 
 
   return (
     <>
       <tr className="orders-table-row">
-        <td>Name</td>
-        <td>Location</td>
-        <td>Phone number</td>
-        <td>Email</td>
-        <td>Date</td>
-        <td>Total amount</td>
+        <td>{data.userInfo[0]}</td>
+        <td>{data.userInfo[1]}</td>
+        <td>{data.userInfo[2]}</td>
+        <td>{data.userInfo[3]}</td>
+        <td>{data.userInfo[4]}</td>
+        <td>{data.userInfo[5]}</td>
         <td>
-          <DropdownButton id="dropdown-basic-button" title="Products" >
-            <Dropdown.Item href="#/action-1">Product 1</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Product 2</Dropdown.Item>
-            <Dropdown.Item href="#/action-3">Product 3</Dropdown.Item>
-          </DropdownButton>
-        </td>
+  <DropdownButton id="dropdown-basic-button" title="Products" >
+    {data.products.map((product, index) => (
+      <Dropdown.Item key={index} >
+        {product.product.Name} {product.quantity}
+      </Dropdown.Item>
+    ))}
+  </DropdownButton>
+</td>
         <td className='admin-order-options'>
 
 
-          <button onClick={() => setModalShow(true)} > Edit</button>
-          <button>Delete</button>
-          {/* <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Options
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1" onClick={() => setModalShow(true)}>
-                Edit
-              </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown> */}
+          <button onClick={ondelete}>Delete</button>
+
         </td>
       </tr>
-      <Ordersedit onHide={() => setModalShow(false)} show={modalShow} />
     </>
   );
 };

@@ -39,7 +39,7 @@ const Adminreviewcard = ({ data, onDelete }) => {
     <div className="Admin-review-card">
       <div className="admin-review-card-first">
         <FaCircleUser className="reviews-image" />
-        <h2>{data.username}</h2>
+        <h2>{data.userInfo[0]}</h2>
         <MdDelete className="admin-reviews-delete" onClick={ondelete} />
       </div>
       <div className="admin-review-card-second">

@@ -38,7 +38,7 @@ grid-template-columns: 1fr 1fr 1fr;
 
 .admin-review-card-first h2{
     color: white;
-margin: auto;
+max-width: 50px;
 }
 
 

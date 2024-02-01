@@ -8,33 +8,37 @@ import axios from "axios";
 
 const Adminorders = () => {
 
-// const [orders,setorders] = useState()
 
-// useEffect(() => {
-//   fetchOrders();
-// }, [orders]);
+const [orders,setorders] = useState()
+const [searchTerm, setSearchTerm] = useState("");
 
 
+useEffect(() => {
+  fetchOrders();
+}, []);
 
-// const fetchOrders = async () => {
-//   try {
-//   const response = await axios.get(`http://localhost:8080/Order`,
-//   // {
-//   //     headers: {
-//   //       Authorization: `Bearer ${user.token}`,
-//   //     },
-//   //   }
-//     );
-//   // console.log(userId)
-//   const data = response.data;
-//   console.log(data);
-//   setorders(data);
-//   // console.log(data)
-//   } catch (error) {
-//   console.log(error);
-//   setorders(null);
-//   }
-// };
+
+const handleDelete = async (deletedOrderId) => {
+  setorders((prevOrder) => prevOrder.filter((Order) => Order._id !== deletedOrderId));
+};
+
+
+const fetchOrders = async () => {
+  try {
+  const response = await axios.get(`http://localhost:8080/Order`,
+  // {
+  //     headers: {
+  //       Authorization: `Bearer ${user.token}`,
+  //     },
+  //   }
+    );
+  const data = response.data;
+  setorders(data);
+  } catch (error) {
+  console.log(error);
+  setorders(null);
+  }
+};
   
     return(
   
@@ -45,25 +49,29 @@ const Adminorders = () => {
           variant="outlined"
           fullWidth
           label="Search"
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
   <table className="orders-table">
 	<tbody>
 		<tr>
-			<td>Name</td>
-			<td>Location</td>
-			<td>Phone number</td>
+			<td>first name</td>
+			<td>last name</td>
 			<td>Email</td>
-			<td>Date</td>
-			<td>Total amount</td>
+			<td>phone number</td>
+			<td>Address</td>
+			<td>Additional info</td>
 			<td>Products</td>
             <td>Options</td>
 		</tr>
-<Adminordersrow />
-<Adminordersrow />
-<Adminordersrow />
-<Adminordersrow />
-<Adminordersrow />
+
+    {orders && orders .filter((data) =>
+              (searchTerm === "" ||
+                (data.userInfo[0] && data.userInfo[0].toLowerCase().includes(searchTerm.toLowerCase())))
+            ).map((item, index) => <Adminordersrow key={index} data={item} onDelete={() => handleDelete(item._id)} />)}
+
+
+
 
 	</tbody>
 </table>

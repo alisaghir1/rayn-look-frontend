@@ -1,63 +1,30 @@
-// import * as React from 'react';
-// import { LineChart } from '@mui/x-charts/LineChart';
-// import { useState, useEffect } from "react";
-// import axios from "axios";
+import React from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
 
-// const BasicLineChart = () => {
-//   const [orderData, setOrderData] = useState([]);
-  
-//   useEffect(() => {
-//     const fetchOrderData = async () => {
-//       try {
-//         const response = await axios.get("http://localhost:8080/Order");
-//         setOrderData(response.data);
-//       } catch (error) {
-//         console.error("Error fetching order data:", error);
-//       }
-//     };
+const BasicLineChart = () => {
+  // Generate dates for the upcoming 7 days
+  const today = new Date();
+  const upcomingDays = Array.from({ length: 7 }, (_, index) => {
+    const nextDay = new Date(today);
+    nextDay.setDate(today.getDate() + index);
+    return nextDay;
+  });
 
-//     fetchOrderData();
-//   }, []);
+  const data = upcomingDays.map((date, index) => ({
+    date: date.toISOString().split('T')[0],
+    value: [12, 5, 6, 8, 7, 9, 11][index],
+  }));
 
-//   // Function to generate an array of dates from the order data
-//   const generateDateArray = () => {
-//     const today = new Date();
-//     const dateArray = Array.from({ length: 9 }, (_, index) => {
-//       const date = new Date(today);
-//       date.setDate(today.getDate() + index);
-//       return date.toISOString().split('T')[0]; // Use ISO string without time for comparison
-//     });
-//     return dateArray;
-//   };
+  return (
+    <ResponsiveContainer width="95%" height={400}>
+      <LineChart data={data}>
+        <XAxis dataKey="date" />
+        <YAxis />
+        <CartesianGrid strokeDasharray="3 3" />
+        <Line type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
 
-//   // Function to generate series data based on order dates
-//   const generateSeriesData = (dateArray, orderData) => {
-//     const seriesData = dateArray.map(date => {
-//       const ordersOnDate = orderData.filter(order => order.date.split('T')[0] === date);
-//       return ordersOnDate.length;
-//     });
-//     return seriesData;
-//   };
-
-//   const dateArray = generateDateArray();
-//   const seriesData = generateSeriesData(dateArray, orderData);
-
-//   return (
-//     <LineChart
-//       xAxis={[{ key: 'date', type: 'time', data: dateArray }]}
-//       series={[
-//         {
-//           data: seriesData, 
-//         },
-//       ]}
-//       width={1300}
-//       height={400}
-//       options={{
-//         xAxisKey: 'date',
-//         xAxisTicks: { maxTicks: 9 },
-//       }}
-//     />
-//   );
-// }
-
-// export default BasicLineChart;
+export default BasicLineChart;

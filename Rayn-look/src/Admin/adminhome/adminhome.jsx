@@ -1,5 +1,5 @@
 import "./adminhome.css"
-// import BasicLineChart from "./linechart"
+import BasicLineChart from "./linechart"
 import   Adminreviews  from "../adminreviews/adminreviews"
 import useReviewCount from "../../hooks/reviewscounterhook"
 import useProductCount from "../../hooks/productcounterhook"
@@ -23,7 +23,7 @@ const Adminhome = () => {
 
 
 
-{/* <BasicLineChart  className="line-chart"/> */}
+<BasicLineChart  className="line-chart"/>
 
 </div>
 

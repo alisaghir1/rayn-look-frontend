@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setToken } from './adminauthentication/autheslice';
 import axios from 'axios';
-
+import "./Adminlogin.css"
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const [redirected, setRedirected] = useState(false);
@@ -49,28 +49,32 @@ const AdminLogin = () => {
   }, [redirected]);
 
   return (
-    <div className="vh-100 d-flex justify-content-center align-items-center">
-      <div className="col-md-5 p-5 shadow-sm border rounded-5 border-primary bg-white">
-        <h2 className="text-center mb-4 text-primary">Login</h2>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          handleLogin();
-        }}>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">Username</label>
-            <input type="text" className="form-control border border-primary" id="username" name="username" aria-describedby="usernameHelp" />
+    <section className="vh-100 vw-100 admin-login-container">
+      <div className="container py-5 h-100">
+        <div className="row d-flex align-items-center justify-content-center h-100">
+          <div className="col-md-8 col-lg-7 col-xl-6">
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid admin-image" alt="Phone image" />
           </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control border border-primary" id="password" name="password" />
+          <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin();
+            }}>
+              <div className="form-outline mb-4">
+                <input type="text" id="username" className="form-control form-control-lg " />
+                <label className="form-label admin-login-label" htmlFor="username">Username</label>
+              </div>
+              <div className="form-outline mb-4">
+                <input type="password" id="password" className="form-control form-control-lg" />
+                <label className="form-label admin-login-label" htmlFor="password">Password</label>
+              </div>
+              <button type="submit" className="btn btn-primary btn-lg btn-block">Sign in</button>
+
+            </form>
           </div>
-          <br />
-          <div className="d-grid">
-            <button className="btn btn-primary" type="submit">Login</button>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
