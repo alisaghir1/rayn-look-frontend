@@ -38,7 +38,7 @@
     border: none !important;
 }
 .bg-warning1:hover{
-    background-color: #dac76b !important;
+    background-color: #88740e !important;
     transition: 0.5s;
 }
 
@@ -257,4 +257,28 @@ a:hover {
   .custom-image-single-product-page{
     height: 300px !important;
   }
+}
+
+
+/* checout page design */
+@media all and (min-width: 800px) {
+    .custom-checkout-page-main-div{
+        padding: 50px 150px 150px 150px !important;
+    }
+}
+
+@media all and (min-width: 668px) {
+    .custom-checkout-page-main-div-title{
+        margin-left: 150px !important;
+    }
+}
+.form-control{
+    border: 1px solid gray !important ;
+}
+@media all and (max-width: 800px) {
+    .custom-checkout-page-main-div{
+        padding: 20px !important;
+        margin: -30px !important;
+        margin-bottom: 100px !important;
+    }
 }

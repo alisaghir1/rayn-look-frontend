@@ -34,4 +34,39 @@
     justify-content: center;
     align-items: center;
   }
+
+  /* home design for card */
   
+.swiper-image-container {
+  position: relative;
+  transition: transform 0.3s ease
+
+}
+
+.swiper-image {
+  height: 250px;
+  width: 250px;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-image-container:hover .overlay {
+  opacity: 0.7;
+}
+
+.swiper-image-container:hover {
+  transform: scale(1.05); /* Increase the scale on hover */
+}
+
+.carousel .carousel-status {
+  display: none !important;
+}

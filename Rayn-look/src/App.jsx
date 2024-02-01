@@ -12,9 +12,12 @@ import Navbar from "./components/Navbar";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Products from "./pages/Products";
 import Reviews from "./pages/Reviews";
-import FrequentlyAsked from "./pages/FrequentlyAsked";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
+import CheckoutPage from "./pages/CheckoutPage";
+
+
+
 
 const Layout = () => {
   return (
@@ -37,6 +40,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/single-product" element={<SingleProduct />} />
           <Route path="/Cart" element={<Cart />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           <Route />
         </Route>
       </Routes>

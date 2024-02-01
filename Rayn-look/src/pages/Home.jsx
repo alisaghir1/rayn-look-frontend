@@ -32,6 +32,9 @@ const Home = () => {
     navigate('/products')
   }
 
+  const containerStyle = {
+    height: productLoading ? '20vh' : '100%'
+  }
 
 
   return (
@@ -103,17 +106,18 @@ const Home = () => {
         className="m-5 d-flex "
         style={{ borderBottom: "1px solid #b69f2c" }}
       ></div>
-      <p className="m-2">COLOURED CONTACT LENSES</p>
+      <p style={{fontSize: '1.3rem'}} className="m-2">COLOURED CONTACT LENSES</p>
       <div className="d-flex justify-content-between mx-2 my-5">
         <p style={{ borderBottom: "1px solid #b69f2c" }}>
           WITH <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
       </div>
-      <div className="my-5 d-flex gap-2">
+      <div style={containerStyle} className="my-5 d-flex gap-2">
       {productLoading ? (
         <EyeLoader />
       ) : (
         <Swiper
+          autoplay={true}
           slidesPerView={1}
           grid={{
             rows: 1,
@@ -138,24 +142,29 @@ const Home = () => {
               slidesPerView: 2,
               spaceBetween: 20,
             },
+            
          }}
         >
           {products
             .filter((product) => product.Category && product.Category.Name === "with-power")
             .map((product, index) => (
               <SwiperSlide key={index} className="bg-transparent">
-              <Link to={'/single-product'} state={{product, productLoading}}>
-              <img
-                className="rounded"
-                style={{ height: "250px", width: "250px" }}
-                src={`http://localhost:8080/${product.Image[0]}`}
-                alt={index}
-              />
+              <Link to={'/single-product'} state={{ product, productLoading }}>
+                <div  className="swiper-image-container">
+                  <img
+                    className="swiper-image"
+                    src={`http://localhost:8080/${product.Image[0]}`}
+                    alt={index}
+                  />
+                  <div className="overlay">
+                    <p className="m-1 fw-bold">Click to see product details</p>
+                  </div>
+                </div>
               </Link>
-                <p className="m-1 fw-bold">
-                  {product.Name}
-                </p>
-              </SwiperSlide>
+              <div className="d-flex justify-content-center">
+              <p className="my-2 ">{product.Name}</p>
+              </div>
+            </SwiperSlide>
             ))}
         </Swiper>
       )}
@@ -191,10 +200,12 @@ const Home = () => {
           WITHOUT <span style={{ color: "#b69f2c" }}>POWER</span>
         </p>
       </div>
+      <div style={containerStyle} className="my-5 d-flex gap-2">
       {productLoading ? (
         <EyeLoader />
       ) : (
         <Swiper
+        autoplay={true}
         slidesPerView={1}
         grid={{
           rows: 1,
@@ -226,20 +237,25 @@ const Home = () => {
           .map((product, index) => (
             <SwiperSlide key={index} className="bg-transparent">
               <Link to={'/single-product'} state={{product, productLoading}}>
-              <img
-                className="rounded"
-                style={{ height: "250px", width: "250px" }}
-                src={`http://localhost:8080/${product.Image[0]}`}
-                alt={index}
-              />
+              <div className="swiper-image-container">
+                  <img
+                    className="swiper-image"
+                    src={`http://localhost:8080/${product.Image[0]}`}
+                    alt={index}
+                  />
+                  <div className="overlay">
+                    <p className="m-1 fw-bold">Click to see product details</p>
+                  </div>
+                </div>
               </Link>
-              <p className="m1 fw-bold">
-                {product.Name}
-              </p>
+              <div className="d-flex justify-content-center">
+              <p className="my-2">{product.Name}</p>
+              </div>
             </SwiperSlide>
           ))}
       </Swiper>
       )}
+      </div>
       <div className="m-5"  style={{borderBottom: '1px solid #b69f2c'}} ></div>
       <div className="bg-transparent my-5"><FrequentlyAsked /></div>
     </div>

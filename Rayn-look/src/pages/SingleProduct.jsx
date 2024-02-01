@@ -6,6 +6,7 @@ import useProductsHook from "../hooks/useProductsHook";
 //import to use the cart globally from redux
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Redux/CartSlice';
+import { useSelector } from "react-redux";
 
 //carousel for react
 import { Carousel } from 'react-responsive-carousel';
@@ -17,6 +18,10 @@ function SingleProduct() {
   const location = useLocation();
   const product = location?.state?.product;
   const {productLoading} = useProductsHook()
+
+  const cartItems = useSelector((state) => state.cart);
+  const isInCart = cartItems.filter((item) => item._id === product._id).length > 0;
+
 
 
   //dispatch to handle the type of the action
@@ -47,13 +52,13 @@ function SingleProduct() {
     <div style={containerStyle}>
     {productLoading ? (<EyeLoader />) : (
     <div className="container-fluid p-5">
-    <div class="d-flex flex-column flex-md-row gap-3">
+    <div  class="d-flex flex-column flex-md-row gap-3">
         <div className="col-md-6">
         <Carousel showArrows={false} autoPlay={true} infiniteLoop={true}  showThumbs={false}>
          {renderSlides}
         </Carousel>
         </div>
-        <div className="col-md-6">
+        <div   className="col-md-6">
           <h1 className="display-4 text-warning2">{product.Name}</h1>
           <h6 className="my-3">Price: {product.Price}$</h6>
           <p className="lead">{product.Description}</p>
@@ -73,7 +78,7 @@ function SingleProduct() {
           </p>
           <h3>Length of Wear</h3>
           <p>1 Year: {product.Price}$</p>
-          <button className="btn bg-warning1 p-3" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+          <button  disabled={isInCart} className="btn bg-warning1 p-3" onClick={() => handleAddToCart(product)}> {isInCart ? "Added to Cart successfully" : "Add to Cart"}</button>
         </div>
       </div>
       <div className="my-5 py-5">

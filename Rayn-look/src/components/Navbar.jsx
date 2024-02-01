@@ -26,21 +26,21 @@ const Navigation = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" className=' justify-self-end'/>
       <Navbar.Collapse id="responsive-navbar-nav " className="justify-content-end">
         <Nav>
-          <NavLink as={Link} to="/" className="nav-link text-warning1">
+          <NavLink as={Link} to="/" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Home
           </NavLink>
-          <NavLink as={Link} to="/products" className="nav-link text-warning1">
+          <NavLink as={Link} to="/products" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Our Products
           </NavLink>
-          <NavLink as={Link} to="/reviews" className="nav-link text-warning1">
+          <NavLink as={Link} to="/reviews" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Give us a review
           </NavLink>
-          <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1">
+          <NavLink as={Link} to="/privacy-policy" className="nav-link text-warning1" style={{fontSize: '1.1rem'}}>
             Privacy Policy
           </NavLink>
-          <NavLink as={Link} to="/cart" className="nav-link text-warning3">
-        <FaShoppingCart  onClick={handleCartNavigate} /> | 
-         <span className="cart-counter"> {totalQuantity}</span>
+          <NavLink as={Link} to="/cart" className="nav-link " style={{fontSize: '1.1rem'}}>
+        <FaShoppingCart className='text-warning3'  onClick={handleCartNavigate} /> 
+         <span className="cart-counter w-100" style={{borderRadius: '100%', backgroundColor: '#b69f2c', padding: '0.2em 0.5em',margin: '0.2em', fontSize:'1rem'}} >{totalQuantity}</span>
     </NavLink>
         </Nav>
       </Navbar.Collapse>

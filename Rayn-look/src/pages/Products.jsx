@@ -5,6 +5,7 @@ import useCategoriesHook from "../hooks/useCategoriesHook";
 import useProductsHook from "../hooks/useProductsHook";
 import { Link } from "react-router-dom";
 import i30 from "../assets/images/30.jpeg";
+import EyeLoader from '../components/EyeLoader'
 
 const Products = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -27,10 +28,13 @@ const Products = () => {
     setShowOffcanvas(false);
   };
 
+  const containerStyle = {
+    height: categoryLoading ? "100vh" : "100%",
+  };
+
   return (
     <div
-      className="d-flex flex-column my-5 overflow-hidden"
-      style={{ overflowY: "scroll" }}
+      className="d-flex flex-column my-5"
     >
       <div>
         <div className="position-relative">
@@ -69,38 +73,42 @@ const Products = () => {
           placement="end"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title style={{borderBottom: '1px solid #b69f2c'}}> Filte By Categories</Offcanvas.Title>
+            <Offcanvas.Title style={{borderBottom: '1px solid #b69f2c'}}> Filter By Categories</Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
             <div
-              className="accordion accordion-flush"
+              className="accordion accordion-flush mt-5"
               id="accordionFlushExample"
             >
               {categories.map((category, index) => (
                 <div
-                  className="d-flex flex-column align-items-center mt-5 text-warning3"
+                  className="d-flex flex-column align-items-center text-warning3"
                   key={index}
                 >
+                  <div className="d-flex justify-content-start align-items-baseline w-100 py-3" style={{borderBottom: "1px solid #b69f2c"}}>
                   <h5
-                    className="w-100"
+                    className=""
                     style={{
-                      borderBottom: "1px solid #b69f2c",
                       cursor: "pointer",
+                      fontSize:'1.5rem',
+                      fontFamily: "Helvetica"
                     }}
                     onClick={() => handleItemSelect(category)}
                   >
                     {category.Name}
                   </h5>
+                  </div>
                 </div>
               ))}
             </div>
           </Offcanvas.Body>
         </Offcanvas>
       </div>
-      <div className="w-100 vh-100">
-        <div className="mx-5  ">
+      <div  className="w-100 vh-100">
+        {categoryLoading ? (<EyeLoader />) : (
+        <div style={containerStyle}  className="mx-5">
           {selectedItem ? (
-            <div>
+            <div  >
               {isCategory ? (
                 <div className="d-flex gap-5">
                   {selectedItem.products.map((product, index) => (
@@ -142,10 +150,10 @@ const Products = () => {
           ) : (
             <div>
               {/* Display all products here */}
-              <div className="d-flex gap-5">
+              <div  className="d-flex gap-5">
                 {categories.map((category) =>
                   category.products.map((product, index) => (
-                    <div className="d-flex flex-column" key={index}>
+                    <div  className="d-flex flex-column" key={index}>
                       <Link
                         to={"/single-product"}
                         state={{ product, productLoading }}
@@ -165,6 +173,7 @@ const Products = () => {
             </div>
           )}
         </div>
+        )}
       </div>
     </div>
   );
