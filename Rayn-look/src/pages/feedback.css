@@ -1,0 +1,96 @@
+.custom-feedback-section {
+    height: 100%;
+    width: 100%;
+    background-image: URL("https://wallpapercave.com/wp/wp3544772.jpg");
+  }
+  
+  .custom-feedback-container {
+    padding: 5rem 0;
+    height: 40%;
+    width: 40%;
+margin: auto;
+background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .custom-feedback-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .custom-feedback-col-lg-8 {
+    width: 100%;
+  }
+  
+  .custom-feedback-col-xl-6 {
+    width: 100%;
+  }
+  
+  .custom-feedback-card {
+    border-radius: 0.3rem;
+    overflow: hidden;
+  }
+  
+  .custom-feedback-img {
+    width: 100%;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+  }
+  
+  .custom-feedback-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .custom-feedback-heading {
+    margin-bottom: 2rem;
+  }
+  
+  .custom-feedback-subheading {
+    margin-bottom: 4rem;
+    opacity: 0.5;
+  }
+  
+  .custom-feedback-form {
+    width: 100%;
+  }
+  
+  .custom-form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+  }
+  
+  .custom-form-col {
+    flex: 1;
+  }
+  
+  .custom-form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .custom-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .custom-form-control {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  .custom-feedback-submit-btn {
+    background-color: #ffc107; /* Adjust the color as needed */
+    color: #000;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
