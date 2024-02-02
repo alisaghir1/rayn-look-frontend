@@ -44,7 +44,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     if (redirected) {
-      window.location.href = "/admin";
+      window.location.href = "/Home";
     }
   }, [redirected]);
 
