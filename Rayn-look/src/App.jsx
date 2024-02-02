@@ -17,6 +17,7 @@ import Cart from "./pages/Cart";
 import CheckoutPage from "./pages/CheckoutPage";
 import ContactUs from "./pages/ContactUs";
 import ScrollToTop from "./pages/ScrollToTop";
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/contactus" element={<><ScrollToTop /><ContactUs /></>} />
           <Route />
         </Route>
+          <Route path="/*" element={<><ScrollToTop /><NotFoundPage /></>} />
       </Routes>
     </BrowserRouter>
   );

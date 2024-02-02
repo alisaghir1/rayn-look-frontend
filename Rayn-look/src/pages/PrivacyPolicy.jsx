@@ -93,11 +93,11 @@ const PrivacyPolicy = () => {
             <i className="text-warning2 pe-2"></i>PLACING AN ORDER
           </h6>
           <p>
-            If any goods ordered are not available, youmibeauty.com may offer
+            If any goods ordered are not available, Rayn-look.com may offer
             you substitute products of equivalent quality and price. if we are
             unable to offer substitutes or you do not agree to accept such
-            substitutes youmibeauty.com shall reimburse your payment within 10
-            days of the date youmibeauty.com receives your order.
+            substitutes Rayn-look.com shall reimburse your payment within 10
+            days of the date Rayn-look.com receives your order.
           </p>
         </div>
 
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
             we will refund the original purchase, minus any outstanding payments
             the customer may owe us. The customer will be responsible to pay for
             trackable shipment for return shipments By subscribing to item
-            beauty text alerts you consent to receive a varying number of
+            text alerts you consent to receive a varying number of
             marketing messages via automated technology and agree to the terms
             and conditions.
           </p>
