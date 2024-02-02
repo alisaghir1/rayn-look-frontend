@@ -74,7 +74,7 @@ const Products = () => {
           </Offcanvas.Body>
         </Offcanvas>
       </div>
-      <div className="w-100 vh-100" style={{ overflowY: 'scroll' }}>
+      <div className="w-100 vh-100">
         {categoryLoading ? (
           <EyeLoader />
         ) : (
