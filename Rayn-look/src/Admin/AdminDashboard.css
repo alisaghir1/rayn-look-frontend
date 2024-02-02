@@ -1,18 +1,14 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Signika:wght@400;700&display=swap"); */
 
-body {
-  margin: 0;
-  padding: 0;
-}
 
 .Admin-Dashboard {
   width: 100vw;
-  height: 100vh;
+  height : 100vh;
   background-color: black;
-
   display: grid;
   grid-template-columns: 20% 80%;
 }
+
 
 .Admin-sidebar {
   display: flex;
@@ -22,13 +18,11 @@ body {
   margin-left: auto;
   margin-top: 50px;
   align-items: start;
-  gap: 41px;
-
-  /* font-family: Signika; */
+  gap: 35px;
 }
 
 .admin-dashboard-logo{
-height: 20%;
+height: 200px;
 }
 .Admin-sidebar-section {
   display: flex;
@@ -36,6 +30,7 @@ height: 20%;
   gap: 10px;
   cursor: pointer
 }
+
 .Admin-icons {
   width: 40px;
   height: 30px;
@@ -61,5 +56,5 @@ height: 20%;
 }
 
 .Admin-sidebar-section.selected {
-color: white; /* Highlight color for the selected section */
+color: white; 
 }

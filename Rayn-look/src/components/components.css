@@ -64,7 +64,7 @@ font-size: larger;
         margin-bottom: 40px;
     }
   }
-/* for cart and product */
+
 a,
 a:hover {
     text-decoration: none;
@@ -221,33 +221,32 @@ a:hover {
 }
 
 
-/* Override accordion button styles */
+
 .accordion-button {
     background-color: transparent !important;
     color: #b69f2c !important;
     border: none !important;
-    outline: none !important; /* Remove outline on focus */
+    outline: none !important; 
   }
   .accordion-button:hover {
     color :#88740e !important;
   }
   
-  /* Override active state styles */
+
   .accordion-button:not(.collapsed) {
     background-color: transparent !important;
   }
   
-  /* Override icon styles */
+
   .accordion-button::after {
     content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
   }
-  
-  /* Override active state icon styles */
+
   .accordion-button:not(.collapsed)::after {
     content: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
   }
   
-  /* Override focus styles */
+
   .accordion-button:focus {
     box-shadow: none !important;
     border-color: transparent !important;
@@ -260,7 +259,6 @@ a:hover {
 }
 
 
-/* checout page design */
 @media all and (min-width: 800px) {
     .custom-checkout-page-main-div{
         padding: 50px 150px 150px 150px !important;
