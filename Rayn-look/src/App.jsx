@@ -20,6 +20,8 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import CheckoutPage from "./pages/CheckoutPage";
 import ContactUs from "./pages/ContactUs";
+import ScrollToTop from "./pages/ScrollToTop";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const Layout = () => {
   return (
@@ -37,21 +39,17 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/Feedbacks" element={<Feedbacks />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/single-product" element={<SingleProduct />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/contactus" element={<ContactUs />} />
+          <Route path="/" element={<><ScrollToTop /><Home /></>} />
+          <Route path="/products" element={<><ScrollToTop /><Products /></>} />
+          <Route path="/Feedbacks" element={<><ScrollToTop /><Feedbacks /></>} />
+          <Route path="/privacy-policy" element={<><ScrollToTop /><PrivacyPolicy /></>} />
+          <Route path="/single-product" element={<><ScrollToTop /><SingleProduct /></>} />
+          <Route path="/Cart" element={<><ScrollToTop /><Cart /></>} />
+          <Route path="/checkout" element={<><ScrollToTop /><CheckoutPage /></>} />
+          <Route path="/contactus" element={<><ScrollToTop /><ContactUs /></>} />
           <Route />
         </Route>
-        <Route path="adminlogin" element={<AdminLogin />} />
-        <Route
-          path="admin"
-          element={token ? <AdminDashboard /> : <Navigate to={"/adminlogin"} />}
-        />
+          <Route path="/*" element={<><ScrollToTop /><NotFoundPage /></>} />
       </Routes>
     </BrowserRouter>
   );

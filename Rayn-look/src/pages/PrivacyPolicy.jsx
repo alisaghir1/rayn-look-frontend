@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal, Button, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 
 const PrivacyPolicy = () => {
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const userData = {
+    name,
+    email,
+    message
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+    console.log(userData)
+    emailjs
+      .send(
+        "service_50xsf8d",
+        "template_ziys0h8",
+        userData,
+        "SxdeFlZArqjSkFMpF"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+          setName("");
+          setEmail("");
+          setMessage("");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+
+
   return (
     <section className="">
       <h3 className="text-center mb-5 pb-2 text-warning2 fw-bold mt-5 custom-sentence-user-gallery">
@@ -93,11 +133,11 @@ const PrivacyPolicy = () => {
             <i className="text-warning2 pe-2"></i>PLACING AN ORDER
           </h6>
           <p>
-            If any goods ordered are not available, youmibeauty.com may offer
+            If any goods ordered are not available, Rayn-look.com may offer
             you substitute products of equivalent quality and price. if we are
             unable to offer substitutes or you do not agree to accept such
-            substitutes youmibeauty.com shall reimburse your payment within 10
-            days of the date youmibeauty.com receives your order.
+            substitutes Rayn-look.com shall reimburse your payment within 10
+            days of the date Rayn-look.com receives your order.
           </p>
         </div>
 
@@ -110,13 +150,59 @@ const PrivacyPolicy = () => {
             we will refund the original purchase, minus any outstanding payments
             the customer may owe us. The customer will be responsible to pay for
             trackable shipment for return shipments By subscribing to item
-            beauty text alerts you consent to receive a varying number of
+            text alerts you consent to receive a varying number of
             marketing messages via automated technology and agree to the terms
             and conditions.
           </p>
         </div>
-        <div className="text-center w-100">If you have any other question don't hesitate to<Link className="text-warning2 nav-link" to={'/contact-us'}>Contact Us</Link> </div>
+        <div className="text-center w-100">
+          If you have any other question don't hesitate to{' '}
+          <Button variant="link" onClick={() => setShowContactForm(true)}>
+            Contact Us
+          </Button>
+        </div>
       </div>
+
+      <Modal show={showContactForm} onHide={() => setShowContactForm(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Contact Us</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                placeholder="Enter your email address"
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId="formMessage">
+              <Form.Label>Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={message}
+                rows={3}
+                placeholder="Enter Message"
+                onChange={(event) => setMessage(event.target.value)}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </section>
   );
 };

@@ -162,7 +162,6 @@ const Home = () => {
                 </div>
               </Link>
               <div className="d-flex justify-content-center">
-              <p className="my-2 ">{product.Name}</p>
               </div>
             </SwiperSlide>
             ))}
@@ -249,7 +248,6 @@ const Home = () => {
                 </div>
               </Link>
               <div className="d-flex justify-content-center">
-              <p className="my-2">{product.Name}</p>
               </div>
             </SwiperSlide>
           ))}
