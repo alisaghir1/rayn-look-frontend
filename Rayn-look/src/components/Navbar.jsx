@@ -21,7 +21,7 @@ const Navigation = () => {
   return (
     <Navbar expand="lg"  className="px-5 navbar">
       <Navbar.Brand as={Link} to="/" className='d-flex justify-content-baseline'>
-        <img src={i20} alt="" className="custom-logo-class" onClick={handleNavigate}/>
+        <img src={i20} alt="rayn-look-logo" className="custom-logo-class" onClick={handleNavigate}/>
         </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" className=' justify-self-end'/>
       <Navbar.Collapse id="responsive-navbar-nav " className="justify-content-end">

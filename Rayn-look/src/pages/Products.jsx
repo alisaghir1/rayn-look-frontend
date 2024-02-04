@@ -39,8 +39,8 @@ const Products = () => {
   }
 
   return (
-    <div className="d-flex flex-column my-5">
-      <div>
+    <section className="d-flex flex-column my-5">
+      <nav>
         <div className="position-relative">
           <img
             src={i30}
@@ -89,16 +89,20 @@ const Products = () => {
             </div>
           </Offcanvas.Body>
         </Offcanvas>
-      </div>
-      <div style={containerStyle} className="w-100">
+      </nav>
+
+      <main style={containerStyle} className="w-100">
+
         {categoryLoading ? (
           <EyeLoader />
         ) : (
+
           <div style={containerStyle} className="mx-5">
-            <div className="row row-cols-1 row-cols-md-4 g-4">
+
+            <section className="row row-cols-1 row-cols-md-4 g-4">
             {selectedItem
                 ? selectedItem.products.slice(0, visibleProducts).map((product, index) => (
-                  <div class="col-lg-3 col-md-12 mb-4">
+                  <article class="col-lg-3 col-md-12 mb-4">
                   <div class="card">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light">
@@ -129,11 +133,13 @@ const Products = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
+
                   ))
                 : categories.map((category) =>
                 category.products.slice(0, visibleProducts).map((product, index) => (
-                  <div class="col-lg-3 col-md-12 mb-4">
+
+                  <article class="col-lg-3 col-md-12 mb-4">
                   <div class="card">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light">
@@ -164,19 +170,13 @@ const Products = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </article>
+
                     ))
                   )}
-            </div>
+            </section>
             {hasMoreProducts && (
               <div className="d-flex justify-content-end mt-5">
-              {/* <button
-                style={{backgroundColor: 'black', color: '#b69f2c '}}
-                className="btn mt-3 px-5"
-                onClick={() => setVisibleProducts((prevCount) => prevCount + 8)}
-              >
-                Show More
-              </button> */}
               <button class="cta"
                               onClick={() => setVisibleProducts((prevCount) => prevCount + 8)}>
   <span>Show more</span>
@@ -189,8 +189,8 @@ const Products = () => {
             )}
           </div>
         )}
-      </div>
-    </div>
+      </main>
+    </section>
   );
 };
 

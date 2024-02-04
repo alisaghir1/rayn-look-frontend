@@ -1,30 +1,31 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./feedback.css"; // Import the custom CSS file
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
+import "./feedback.css";
 
 const Feedbacks = () => {
-  const [firstname, setfirstname] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [email, setemail] = useState("");
-  const [phonenumber, setphonenumber] = useState("");
-  const [Message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false)
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [phonenumber, setPhonenumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true)
-    console.log("submitted");
+    setLoading(true);
 
-    if (!firstname || !lastname || !email || !phonenumber || !Message) {
+    if (!firstname || !lastname || !email || !phonenumber || !message) {
       console.log("bruh");
     } else {
       const userInfo = [`${firstname} ${lastname}`, email, phonenumber];
 
       const postData = {
         userInfo,
-        Message: Message,
+        Message: message,
       };
 
       try {
@@ -35,15 +36,14 @@ const Feedbacks = () => {
         );
         console.log(response);
       } catch (error) {
-        console.log(error);
-      }
-      finally {
-        setLoading(false)
+        console.error(error);
+      } finally {
+        setLoading(false);
         await Swal.fire({
-          title: "Than you for your Feedback!",
+          title: "Thank you for your Feedback!",
           icon: "success"
         });
-        navigate('/')
+        navigate('/');
       }
     }
   };
@@ -57,12 +57,12 @@ const Feedbacks = () => {
               <img
                 src="https://images.ctfassets.net/u4vv676b8z52/3eSqiYDD8r4CvoCoOUMjvj/a289de057e4426ed6976e66e51aed9fe/common-eye-color-678x446.gif?fm=jpg&q=80"
                 className="custom-feedback-img"
-                alt="Sample photo"
+                alt="a colored eye"
               />
               <div className="custom-feedback-card-body">
                 <h3 className="custom-feedback-heading mt-4">Give us your feedback</h3>
                 <h6 className="custom-feedback-subheading">
-                  fill out your information below
+                  Fill out your information below
                 </h6>
                 <form className="custom-feedback-form" onSubmit={handleSubmit}>
                   <div className="custom-form-row">
@@ -77,7 +77,7 @@ const Feedbacks = () => {
                           className="custom-form-control"
                           id="firstname"
                           required
-                          onChange={(event) => setfirstname(event.target.value)}
+                          onChange={(event) => setFirstname(event.target.value)}
                         />
                       </div>
                     </div>
@@ -93,7 +93,7 @@ const Feedbacks = () => {
                           className="custom-form-control"
                           id="lastname"
                           required
-                          onChange={(event) => setlastname(event.target.value)}
+                          onChange={(event) => setLastname(event.target.value)}
                         />
                       </div>
                     </div>
@@ -110,7 +110,7 @@ const Feedbacks = () => {
                           className="custom-form-control"
                           placeholder="Example@gmail.com"
                           required
-                          onChange={(event) => setemail(event.target.value)}
+                          onChange={(event) => setEmail(event.target.value)}
                         />
                       </div>
                     </div>
@@ -127,7 +127,7 @@ const Feedbacks = () => {
                           pattern="[0-9]{8}"
                           placeholder="12345678"
                           required
-                          onChange={(event) => setphonenumber(event.target.value)}
+                          onChange={(event) => setPhonenumber(event.target.value)}
                         />
                       </div>
                     </div>
@@ -148,13 +148,15 @@ const Feedbacks = () => {
                       </div>
                     </div>
                   </div>
-                  <button  data-mdb-ripple-init type="submit" className="btn bg-warning1 w-25">  {loading ? (
-    <div className="spinner-border text-dark" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  ) : (
-    'Submit'
-  )}</button>
+                  <button data-mdb-ripple-init type="submit" className="btn bg-warning1 w-25">
+                    {loading ? (
+                      <div className="spinner-border text-dark" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
+                        <span className="visually-hidden">Loading...</span>
+                      </div>
+                    ) : (
+                      'Submit'
+                    )}
+                  </button>
                 </form>
               </div>
             </div>
