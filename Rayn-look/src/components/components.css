@@ -280,3 +280,8 @@ a:hover {
         margin-bottom: 100px !important;
     }
 }
+
+.card-cart{
+    border: 1px solid gray;
+    border-radius: 10px;
+}

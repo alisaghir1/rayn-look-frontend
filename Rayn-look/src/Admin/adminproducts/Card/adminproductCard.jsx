@@ -6,6 +6,8 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
+import Swal from "sweetalert2";
+
 
 const Adminproductcard = ({ data, onDelete }) => {
   const [show, setShow] = useState(false);
@@ -19,28 +21,54 @@ const Adminproductcard = ({ data, onDelete }) => {
   const [Price, setPrice] = useState(0);
   const [Description, setDescription] = useState("");
 
-  const ondelete = async () => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/Product/${newData._id}`
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${user.token}`,
-        //   },
-        // }
-      );
-      if (response.status !== 200) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+  const ondelete = async (onDelete) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    });
+  
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(`http://localhost:8080/Product/${newData._id}`);
+        
+        if (response.status !== 200) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        await Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+  
+        // Move the onDelete call inside the if block
+        onDelete(newData._id);
+      } catch (error) {
+        console.error('There was an error!', error);
       }
-    } catch (error) {
-      console.error("There was an error!", error);
     }
   };
 
   useEffect(() => {
     fetchCategories();
+    fetchProductData();
+  }, [newData]);
 
-  }, []);
+
+   const fetchProductData = async () => {
+    try {
+       const response = await axios.get(`http://localhost:8080/Product/${newData._id}`);
+       setNewData(response.data);
+    } catch (error) {
+       console.error(error);
+    }
+   };
+   
 
   const fetchCategories = async () => {
     try {
@@ -63,9 +91,9 @@ const Adminproductcard = ({ data, onDelete }) => {
     }
   };
 
+
   const handleImageDelete = async () => {
     try {
-      console.log(deleteIndex, newData._id);
       const response = await axios.delete(
         `http://localhost:8080/Product/${newData._id}/${deleteIndex}`
       );
@@ -78,28 +106,27 @@ const Adminproductcard = ({ data, onDelete }) => {
     } catch (error) {
       console.error("There was an error!", error);
     }
-  };
+ };
 
-  const handleImageAdd = async (event) => {
-    try {
-      event.preventDefault();
-      const formData = new FormData();
-      for (let i = 0; i < creationImages.length; i++) {
-        formData.append("Image", creationImages[i]);
-      }
-      const response = await axios.post(
-        `http://localhost:8080/Product/${newData._id}`,
-        formData
-      );
-      const updatedImages = [...newData.Image];
-      setNewData({ ...newData, Image: updatedImages });
-      console.log(response);
-      setImageForm(false);
-      onDelete();
-    } catch (error) {
-      console.log(error);
+ const handleImageAdd = async (event) => {
+  try {
+    event.preventDefault();
+    const formData = new FormData();
+    for (let i = 0; i < creationImages.length; i++) {
+      formData.append("Image", creationImages[i]);
     }
-  };
+    const response = await axios.post(
+      `http://localhost:8080/Product/${newData._id}`,
+      formData
+    );
+    const updatedImages = [...newData.Image, ...creationImages];
+    newData.Image = updatedImages; // Directly update the Image property of newData
+    setCreationImages("");
+    setImageForm(false);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
   const handleSubmit = async (event) => {
     try {
@@ -122,7 +149,6 @@ const Adminproductcard = ({ data, onDelete }) => {
       );
       console.log(response);
       setShow(false);
-      onDelete();
       setNewData((prevData) => {
         // Update the properties you want to change in the existing data
         return {
@@ -131,6 +157,10 @@ const Adminproductcard = ({ data, onDelete }) => {
           Price: requestData.Price,
           Description: requestData.Description,
         };
+      });
+      await Swal.fire({
+        title: "Updated Successfully!",
+        icon: "success"
       });
     } catch (error) {
       console.error("There was an error!", error);
@@ -170,11 +200,7 @@ const Adminproductcard = ({ data, onDelete }) => {
               </button>
               <button
                 className="button-Delete"
-                onClick={() => {
-                  ondelete();
-                  onDelete();
-                }}
-              >
+                onClick={() => ondelete(onDelete)}>
                 {" "}
                 Delete{" "}
               </button>
@@ -223,10 +249,7 @@ const Adminproductcard = ({ data, onDelete }) => {
                 <Button
                   variant="danger"
                   className="DeleteImageButton"
-                  onClick={() => {
-                    handleImageDelete();
-                    onDelete();
-                  }}
+                  onClick={handleImageDelete}
                 >
                   Delete Image
                 </Button>
@@ -311,10 +334,7 @@ const Adminproductcard = ({ data, onDelete }) => {
               variant="primary mt-3"
               className="SubmitButton"
               type="submit"
-              onClick={(event) => {
-                handleImageAdd(event);
-                setCreationImages("");
-              }}
+              onClick={handleImageAdd}
             >
               Submit
             </Button>

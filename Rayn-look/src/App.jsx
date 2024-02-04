@@ -35,6 +35,7 @@ const Layout = () => {
 
 function App() {
   const token = useSelector((state) => state.auth);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -49,6 +50,8 @@ function App() {
           <Route path="/contactus" element={<><ScrollToTop /><ContactUs /></>} />
           <Route />
         </Route>
+          <Route path='/adminlogin' element={<AdminLogin />} />
+          <Route path='/admin' element={token ? <AdminDashboard /> : <Navigate to={'/adminlogin'} />} />
           <Route path="/*" element={<><ScrollToTop /><NotFoundPage /></>} />
       </Routes>
     </BrowserRouter>

@@ -48,7 +48,7 @@ const Adminordersrow = ({data,onDelete}) => {
   <DropdownButton id="dropdown-basic-button" title="Products" >
     {data.products.map((product, index) => (
       <Dropdown.Item key={index} >
-        {product.product.Name} {product.quantity}
+        {product?.product?.Name} {product?.quantity}
       </Dropdown.Item>
     ))}
   </DropdownButton>
@@ -56,7 +56,7 @@ const Adminordersrow = ({data,onDelete}) => {
         <td className='admin-order-options'>
 
 
-          <button onClick={ondelete}>Delete</button>
+          <button className='btn btn-danger' onClick={ondelete}>Delete</button>
 
         </td>
       </tr>

@@ -17,7 +17,7 @@ const useCategoriesHook = () => {
         })
      }, [])
      
-  return {categories, categoryLoading}
+  return {categories, categoryLoading, setCategory}
 }
 
 export default useCategoriesHook

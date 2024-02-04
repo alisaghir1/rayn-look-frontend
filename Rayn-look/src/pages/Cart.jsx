@@ -60,7 +60,7 @@ const handleNavigateToCheckout = () => {
           <h3 className="fw-normal mb-0 text-warning2">Shopping Cart</h3>
         </div>
         {cartItems.map((item, index) => (
-          <div key={index} className="card rounded-3 mb-4">
+          <div key={index} className="card-cart p-3 rounded-3 mb-4">
             <div className="card-body p-4">
               <div className="row d-flex justify-content-between align-items-center gap-2">
                 <div className="col-md-2 col-lg-2 col-xl-2 d-flex" style={{ aspectRatio: '1'}}>
@@ -99,8 +99,8 @@ const handleNavigateToCheckout = () => {
             </div>
           </div>
         ))}
-        <div className="card">
-          <div className="card-body text-center">
+        <div className="card-cart">
+          <div className="card-body text-center p-3">
             <button onClick={handleNavigateToCheckout} type="button" className="btn bg-warning1 btn-block btn-lg w-100">Proceed to Pay the Total of: ${totalPrice}</button>
           </div>
         </div>

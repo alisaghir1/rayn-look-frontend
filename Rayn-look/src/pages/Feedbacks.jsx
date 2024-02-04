@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./feedback.css"; // Import the custom CSS file
+import Swal from "sweetalert2";
 
 const Feedbacks = () => {
   const [firstname, setfirstname] = useState("");
@@ -8,9 +9,12 @@ const Feedbacks = () => {
   const [email, setemail] = useState("");
   const [phonenumber, setphonenumber] = useState("");
   const [Message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false)
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     console.log("submitted");
 
     if (!firstname || !lastname || !email || !phonenumber || !Message) {
@@ -33,6 +37,14 @@ const Feedbacks = () => {
       } catch (error) {
         console.log(error);
       }
+      finally {
+        setLoading(false)
+        await Swal.fire({
+          title: "Than you for your Feedback!",
+          icon: "success"
+        });
+        navigate('/')
+      }
     }
   };
 
@@ -48,7 +60,7 @@ const Feedbacks = () => {
                 alt="Sample photo"
               />
               <div className="custom-feedback-card-body">
-                <h3 className="custom-feedback-heading">Give us your feedback</h3>
+                <h3 className="custom-feedback-heading mt-4">Give us your feedback</h3>
                 <h6 className="custom-feedback-subheading">
                   fill out your information below
                 </h6>
@@ -136,13 +148,13 @@ const Feedbacks = () => {
                       </div>
                     </div>
                   </div>
-
-                  <button
-                    type="submit"
-                    className="custom-feedback-submit-btn"
-                  >
-                    Submit
-                  </button>
+                  <button  data-mdb-ripple-init type="submit" className="btn bg-warning1 w-25">  {loading ? (
+    <div className="spinner-border text-dark" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  ) : (
+    'Submit'
+  )}</button>
                 </form>
               </div>
             </div>

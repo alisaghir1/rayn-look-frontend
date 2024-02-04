@@ -157,8 +157,9 @@ const Footer = () => {
                 </p>
 
                 <button
-                  style={{ cursor: "pointer", textDecoration: "underline" }}
+                  style={{ cursor: "pointer", textDecoration: "none" }}
                   onClick={() => setShow(true)}
+                  className="btn bg-warning1"
                 >
                   Contact us
                 </button>
@@ -209,7 +210,7 @@ const Footer = () => {
               />
             </Form.Group>
             <Button
-              variant="primary mt-3"
+              variant="btn bg-warning1 mt-3"
               className="SubmitButton"
               type="submit"
             >

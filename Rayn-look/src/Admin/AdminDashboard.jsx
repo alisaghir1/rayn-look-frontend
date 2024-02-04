@@ -7,10 +7,13 @@ import AdminHome from "./adminhome/adminhome";
 import Adminproducts from "./adminproducts/adminproducts";
 import Adminorders from "./adminorders/adminorders";
 import Adminreviews from "./adminreviews/adminreviews";
+import Admincategories from "./admincategories/admincategories";
 import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
+import { MdCategory } from "react-icons/md";
 import logo from "../assets/images/logo1.png";
 import Swal from "sweetalert2";
+
 const AdminDashboard = () => {
   const [selectedComponent, setSelectedComponent] = useState("Dashboard");
 
@@ -28,6 +31,8 @@ const AdminDashboard = () => {
         return <Adminorders />;
       case "Reviews":
         return <Adminreviews />;
+        case "Categories":
+          return <Admincategories />;
       default:
         return null;
     }
@@ -62,6 +67,21 @@ const AdminDashboard = () => {
           <MdOutlineSpaceDashboard className="Admin-icons" />
           <h2>Dashboard</h2>
         </div>
+
+
+        <div
+          className={`Admin-sidebar-section ${
+            selectedComponent === "Categories" ? "selected" : ""
+          }`}
+          onClick={() => handleSidebarClick("Categories")}
+        >
+          <MdCategory className="Admin-icons" />
+          <h2>Categories</h2>
+        </div>
+
+
+
+
 
         <div
           className={`Admin-sidebar-section ${

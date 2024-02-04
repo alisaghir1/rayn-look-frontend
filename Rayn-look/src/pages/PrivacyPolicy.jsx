@@ -157,7 +157,7 @@ const PrivacyPolicy = () => {
         </div>
         <div className="text-center w-100">
           If you have any other question don't hesitate to{' '}
-          <Button variant="link" onClick={() => setShowContactForm(true)}>
+          <Button className="text-warning1" variant="link" onClick={() => setShowContactForm(true)}>
             Contact Us
           </Button>
         </div>
@@ -197,9 +197,11 @@ const PrivacyPolicy = () => {
                 onChange={(event) => setMessage(event.target.value)}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <div className="d-flex justify-content-center">
+            <Button className="text-center" variant="btn bg-warning1 mt-2" type="submit">
               Submit
             </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>

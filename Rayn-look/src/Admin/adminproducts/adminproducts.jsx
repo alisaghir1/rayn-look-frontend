@@ -7,6 +7,13 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import TextField from "@mui/material/TextField";
+import Swal from 'sweetalert2'
+
+
+
+import EyeLoader from "../../components/EyeLoader";
+
+
 const Adminproducts = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [products, setProducts] = useState([]);
@@ -19,10 +26,11 @@ const Adminproducts = () => {
     const [creationDescription, setCreationDescription] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [CategorybuttonName, setCategoryButtonName] = useState("Category")
-
+    const [loading, setLoading] = useState(false)
 
     const fetchCategories = async () => {
         try {
+            setLoading(true)
         const response = await axios.get(`http://localhost:8080/Category`,
         // {
         //     headers: {
@@ -30,14 +38,15 @@ const Adminproducts = () => {
         //     },
         //   }
           );
-        // console.log(userId)
         const data = response.data;
         console.log(data);
         setCategories(data);
-        // console.log(data)
+        setLoading(false)
         } catch (error) {
         console.log(error);
         setCategories(null);
+        setLoading(false)
+
         }
     };
 
@@ -66,12 +75,22 @@ const Adminproducts = () => {
                 console.log(response);
                 setShow(false);
                 fetchProducts()
+                await Swal.fire({
+                    title: "Added Successfully!",
+                    text: "Congrats on your new product rayn!",
+                    icon: "success"
+                  });
             } catch (error) {
                 console.log(error);
                 setShow(true);
             }
         }
     };
+
+    const handleDelete = async (deletedProductId) => {
+        setProducts((prevProducts) => prevProducts.filter((product) => product._id !== deletedProductId));
+      };
+      
 
     const fetchProducts = async () => {
         try {
@@ -83,7 +102,6 @@ const Adminproducts = () => {
         //     },
         //   }
           );
-        // console.log(userId)
         const data = response.data;
         setProducts(data);
         // console.log(data)
@@ -94,28 +112,6 @@ const Adminproducts = () => {
     };
 
 
-    const handleProductUpdate = async (ProductId) => {
-        try {
-            console.log("kousaa");
-        const response = await axios.get(`http://localhost:8080/Product`,
-        // {
-        //     headers: {
-        //       Authorization: `Bearer ${user.token}`,
-        //     },
-        //   }
-          );
-        // console.log(userId)
-        const data = response.data;
-
-        } catch (error) {
-        console.log(error);
-        setProducts(null);
-        }
-    };
-
-
-
-
     useEffect(() => {
         fetchProducts();
         fetchCategories();
@@ -123,6 +119,8 @@ const Adminproducts = () => {
 
     return(
         <>
+        {loading ? <EyeLoader /> : (
+            <div>
         <div className="container-create-search">
             <button className="admin-Main-Create" onClick={() => setShow(true)}>Create</button>
             <div className="admin-product-search">
@@ -145,12 +143,12 @@ const Adminproducts = () => {
                         <Adminproductcard
                         key = {product._id}
                         data={product}
-                        onDelete={() => fetchProducts()}
+                        onDelete={() => handleDelete(product._id)}
                         // onUpdate = {() => handleProductUpdate(product._id)}
                         />
                         ))
                     ) : (
-                        <p className="DisplayAll-Title">No Products available</p>
+                        <p className="DisplayAll-Title text-center">No Products available</p>
                     )}
             </div>
             <Modal show={show} onHide={() => {setShow(false); setCategoryButtonName("Category"); setErrorMessage("")}}>
@@ -217,12 +215,14 @@ const Adminproducts = () => {
                         </Dropdown>
                         <p style={{color: 'red'}}>{errorMessage}</p>
                     </Form.Group>
-                    <Button variant="primary mt-3" className="SubmitButton" type="submit" onClick={handleSubmit} >
+                    <Button variant=" mt-3" className="SubmitButton bg-warning1" type="submit" onClick={handleSubmit} >
                         Submit
                     </Button>
                 </Form>
                 </Modal.Body>
             </Modal>
+            </div>
+            )}
         </>
     )
 }

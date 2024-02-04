@@ -38,11 +38,11 @@ const CheckoutPage = () => {
      const response = await axios.post('http://localhost:8080/order', userData)
      console.log(response)
      dispatch(clearCart());
-     setLoading(false);
    }catch(err){
      console.log(err)
    }
    finally {
+    setLoading(false);
     await Swal.fire({
       title: "Than you for your order!",
       text: "Our delivery will contact you soon!",

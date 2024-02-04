@@ -5,12 +5,13 @@ import Adminordersrow from "./adminordersrow";
 import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import EyeLoader from "../../components/EyeLoader";
 
 const Adminorders = () => {
 
-
 const [orders,setorders] = useState()
 const [searchTerm, setSearchTerm] = useState("");
+const [loading, setLoading] = useState(false)
 
 
 useEffect(() => {
@@ -24,6 +25,7 @@ const handleDelete = async (deletedOrderId) => {
 
 
 const fetchOrders = async () => {
+  setLoading(true)
   try {
   const response = await axios.get(`http://localhost:8080/Order`,
   // {
@@ -34,14 +36,18 @@ const fetchOrders = async () => {
     );
   const data = response.data;
   setorders(data);
+  setLoading(false)
+
   } catch (error) {
   console.log(error);
   setorders(null);
+  setLoading(false)
   }
 };
   
     return(
-  
+      <>
+  {loading ? (<EyeLoader />) : (
   <div className="Admin-display-container">
           <div className="admin-orders-search">
         <TextField
@@ -77,6 +83,8 @@ const fetchOrders = async () => {
 </table>
   
         </div>
+        )}
+        </>
   
   )
 }

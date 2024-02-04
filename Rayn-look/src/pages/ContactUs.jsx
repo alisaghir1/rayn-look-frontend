@@ -71,7 +71,7 @@ export default function ContactUsModal() {
                             onChange={(event) => setMessage(event.target.value)}
                         />
                     </Form.Group>
-                    <Button variant="primary mt-3" className="SubmitButton" type="submit">
+                    <Button variant="btn bg-warning1 mt-3" className="SubmitButton" type="submit">
                         Submit
                     </Button>
                 </Form>

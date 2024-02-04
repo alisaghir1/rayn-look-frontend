@@ -3,10 +3,15 @@ import TextField from "@mui/material/TextField";
 import "./adminreviews.css"
 import { useEffect, useState } from "react";
 import axios from "axios"
+import useReviewsHook from '../../hooks/useReviewsHook'
+import EyeLoader from "../../components/EyeLoader";
+
 const Adminreviews = () => {
-    const [review, setreview] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
     const [reviewCount, setReviewCount] = useState(0)
+    const [review, setreview] = useState([])
+    const {reviewLoading} = useReviewsHook()
+
     useEffect(() => {
         const fetchingreviews = () => {
           axios
@@ -36,7 +41,7 @@ const Adminreviews = () => {
 
 
     return(
-        <div className="Admin-display-container">
+        <div className="Admin-display-container"> 
               <div className="admin-reviews-search-bar">
         <TextField 
           id="outlined-basic"
@@ -46,14 +51,15 @@ const Adminreviews = () => {
           value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
         />
  </div>
+ {reviewLoading ?( <EyeLoader />) : (
            <div className="admin-reviews-container">
-
             {review &&
               review.filter((item) =>
               (searchTerm === "" ||
                 (item.username && item.username.toLowerCase().includes(searchTerm.toLowerCase())))
             ).map((item, index) => <Adminreviewcard key={index} data={item}  onDelete={() => handleDelete(item._id)} />)}
             </div>
+ )}
         </div>
     )
 }

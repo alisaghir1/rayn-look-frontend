@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import { setToken } from "../Redux/autheslice";
 import axios from "axios";
 import "./Adminlogin.css";
+import i20 from '../assets/images/logo1.png'
+
+
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const [redirected, setRedirected] = useState(false);
@@ -54,7 +57,7 @@ const AdminLogin = () => {
         <div className="row d-flex align-items-center justify-content-center h-100">
           <div className="col-md-8 col-lg-7 col-xl-6">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+              src={i20}
               className="img-fluid admin-image"
               alt="Phone image"
             />
@@ -94,7 +97,7 @@ const AdminLogin = () => {
               </div>
               <button
                 type="submit"
-                className="btn btn-primary btn-lg btn-block"
+                className="btn bg-warning1 btn-lg btn-block"
               >
                 Sign in
               </button>
