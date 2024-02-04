@@ -1,0 +1,29 @@
+.admin-categories-container{
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+}
+
+
+.admin-categories-card{
+    background-color: #f9f9f9  ;
+    height: 350px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 255, .2);
+    border-radius: 3% 3%;
+    width: 90%;
+    margin: auto;
+    margin-top: 30px;
+    display: grid;
+    grid-template-rows: 25% 75%;
+}
+
+
+.admin-categories-card h2{
+    color: black;
+    text-align: center;
+}
+
+.admin-categories-card img{
+    width: 80%;
+    height: 90%;
+    margin: auto;
+}

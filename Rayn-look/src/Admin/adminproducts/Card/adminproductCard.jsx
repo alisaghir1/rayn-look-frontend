@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
+import Swal from 'sweetalert2'; // Import SweetAlert library
 
 const Adminproductcard = ({ data, onDelete }) => {
   const [show, setShow] = useState(false);
@@ -19,21 +20,39 @@ const Adminproductcard = ({ data, onDelete }) => {
   const [Price, setPrice] = useState(0);
   const [Description, setDescription] = useState("");
 
+
   const ondelete = async () => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:8080/Product/${newData._id}`
-        // {
-        //   headers: {
-        //     Authorization: `Bearer ${user.token}`,
-        //   },
-        // }
-      );
-      if (response.status !== 200) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:8080/Product/${newData._id}`
+        );
+
+        if (response.status !== 200) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        await Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+
+        // Trigger the onDelete callback to update the UI
+        onDelete(data._id);
+      } catch (error) {
+        console.error('There was an error!', error);
       }
-    } catch (error) {
-      console.error("There was an error!", error);
     }
   };
 

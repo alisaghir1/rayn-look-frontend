@@ -50,6 +50,8 @@ function App() {
           <Route />
         </Route>
           <Route path="/*" element={<><ScrollToTop /><NotFoundPage /></>} />
+          <Route path='adminlogin' element={<AdminLogin />} />
+          <Route path='admin' element={token ? <AdminDashboard /> : <Navigate to={'/adminlogin'} />} />
       </Routes>
     </BrowserRouter>
   );
