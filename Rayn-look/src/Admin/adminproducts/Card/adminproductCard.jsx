@@ -34,7 +34,7 @@ const Adminproductcard = ({ data, onDelete }) => {
   
     if (result.isConfirmed) {
       try {
-        const response = await axios.delete(`http://localhost:8080/Product/${newData._id}`);
+        const response = await axios.delete(`https://rayn-look-backend.onrender.com/Product/${newData._id}`);
         
         if (response.status !== 200) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -62,7 +62,7 @@ const Adminproductcard = ({ data, onDelete }) => {
 
    const fetchProductData = async () => {
     try {
-       const response = await axios.get(`http://localhost:8080/Product/${newData._id}`);
+       const response = await axios.get(`https://rayn-look-backend.onrender.com/Product/${newData._id}`);
        setNewData(response.data);
     } catch (error) {
        console.error(error);
@@ -73,7 +73,7 @@ const Adminproductcard = ({ data, onDelete }) => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/Category`
+        `https://rayn-look-backend.onrender.com/Category`
         // {
         //     headers: {
         //       Authorization: `Bearer ${user.token}`,
@@ -95,7 +95,7 @@ const Adminproductcard = ({ data, onDelete }) => {
   const handleImageDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/Product/${newData._id}/${deleteIndex}`
+        `https://rayn-look-backend.onrender.com/Product/${newData._id}/${deleteIndex}`
       );
       if (response.status !== 200) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -116,7 +116,7 @@ const Adminproductcard = ({ data, onDelete }) => {
       formData.append("Image", creationImages[i]);
     }
     const response = await axios.post(
-      `http://localhost:8080/Product/${newData._id}`,
+      `https://rayn-look-backend.onrender.com/Product/${newData._id}`,
       formData
     );
     const updatedImages = [...newData.Image, ...creationImages];
@@ -139,7 +139,7 @@ const Adminproductcard = ({ data, onDelete }) => {
       console.log(requestData);
       console.log(newData._id);
       const response = await axios.patch(
-        `http://localhost:8080/Product/${newData._id}`,
+        `https://rayn-look-backend.onrender.com/Product/${newData._id}`,
         requestData,
         {
           headers: {
@@ -182,7 +182,7 @@ const Adminproductcard = ({ data, onDelete }) => {
                 <Carousel.Item key={index}>
                   <img
                     className="card__img"
-                    src={`http://localhost:8080/${image}`}
+                    src={`https://rayn-look-backend.onrender.com/${image}`}
                     alt=""
                   />
                 </Carousel.Item>
@@ -239,7 +239,7 @@ const Adminproductcard = ({ data, onDelete }) => {
                   <Carousel.Item key={index}>
                     <img
                       className="imgupdate"
-                      src={`http://localhost:8080/${image}`}
+                      src={`https://rayn-look-backend.onrender.com/${image}`}
                       alt=""
                     />
                   </Carousel.Item>

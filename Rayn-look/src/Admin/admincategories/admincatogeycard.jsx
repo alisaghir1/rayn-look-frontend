@@ -19,7 +19,7 @@ const Admincategorycard = ({category,onDelete}) => {
     
         if (result.isConfirmed) {
           try {
-            const response = await axios.delete(`http://localhost:8080/category/${category._id}`);
+            const response = await axios.delete(`https://rayn-look-backend.onrender.com/category/${category._id}`);
             if (response.status !== 200) {
               throw new Error(`HTTP error! status: ${response.status}`);
             }

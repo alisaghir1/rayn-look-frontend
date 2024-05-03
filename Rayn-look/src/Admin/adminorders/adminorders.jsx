@@ -27,7 +27,7 @@ const handleDelete = async (deletedOrderId) => {
 const fetchOrders = async () => {
   setLoading(true)
   try {
-  const response = await axios.get(`http://localhost:8080/Order`,
+  const response = await axios.get(`https://rayn-look-backend.onrender.com/Order`,
   // {
   //     headers: {
   //       Authorization: `Bearer ${user.token}`,

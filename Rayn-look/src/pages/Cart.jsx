@@ -64,7 +64,7 @@ const Cart = () => {
                       <div className="row d-flex justify-content-between align-items-center gap-2">
                         <div className="col-md-2 col-lg-2 col-xl-2 d-flex" style={{ aspectRatio: '1' }}>
                           <img
-                            src={`http://localhost:8080/${item.Image[0]}`}
+                            src={`https://rayn-look-backend.onrender.com/${item.Image[0]}`}
                             className="img-fluid rounded-3" alt="rayn-look-products"
                             style={{ objectFit: 'cover' }}
                           />

@@ -15,7 +15,7 @@ const Adminreviews = () => {
     useEffect(() => {
         const fetchingreviews = () => {
           axios
-            .get('http://localhost:8080/review/')
+            .get('https://rayn-look-backend.onrender.com/review/')
             .then((res) => {
               setreview(res.data);
               setReviewCount(res.data.length)

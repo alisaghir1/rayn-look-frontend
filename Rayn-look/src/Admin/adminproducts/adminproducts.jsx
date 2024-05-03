@@ -31,7 +31,7 @@ const Adminproducts = () => {
     const fetchCategories = async () => {
         try {
             setLoading(true)
-        const response = await axios.get(`http://localhost:8080/Category`,
+        const response = await axios.get(`https://rayn-look-backend.onrender.com/Category`,
         // {
         //     headers: {
         //       Authorization: `Bearer ${user.token}`,
@@ -69,7 +69,7 @@ const Adminproducts = () => {
 
             try {
                 const response = await axios.post(
-                `http://localhost:8080/Product`,
+                `https://rayn-look-backend.onrender.com/Product`,
                 formData
                 );
                 console.log(response);
@@ -95,7 +95,7 @@ const Adminproducts = () => {
     const fetchProducts = async () => {
         try {
             console.log("kousaa");
-        const response = await axios.get(`http://localhost:8080/Product`,
+        const response = await axios.get(`https://rayn-look-backend.onrender.com/Product`,
         // {
         //     headers: {
         //       Authorization: `Bearer ${user.token}`,

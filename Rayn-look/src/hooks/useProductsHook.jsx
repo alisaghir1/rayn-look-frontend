@@ -7,7 +7,7 @@ const useProductsHook = () => {
 
     useEffect(() => {
         setProductLoading(true)
-        axios.get('http://localhost:8080/product')
+        axios.get('https://rayn-look-backend.onrender.com/product')
         .then((response) => {
             setProducts(response.data)
             setProductLoading(false)

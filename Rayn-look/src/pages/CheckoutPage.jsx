@@ -32,7 +32,7 @@ const CheckoutPage = () => {
 
     try {
       console.log(userData);
-      const response = await axios.post('http://localhost:8080/order', userData);
+      const response = await axios.post('https://rayn-look-backend.onrender.com/order', userData);
       console.log(response);
       dispatch(clearCart());
     } catch (err) {

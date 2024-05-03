@@ -186,7 +186,7 @@ const Home = () => {
                     <div className="swiper-image-container">
                       <img
                         className="swiper-image"
-                        src={`http://localhost:8080/${product.Image[0]}`}
+                        src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         alt='contact lenses with power'
                       />
                       <div className="overlay">
@@ -282,7 +282,7 @@ const Home = () => {
                     <div className="swiper-image-container">
                       <img
                         className="swiper-image"
-                        src={`http://localhost:8080/${product.Image[0]}`}
+                        src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         alt='contact lenses without power'
                       />
                       <div className="overlay">

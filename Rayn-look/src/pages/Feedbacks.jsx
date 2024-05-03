@@ -31,7 +31,7 @@ const Feedbacks = () => {
       try {
         console.log(postData.userInfo);
         const response = await axios.post(
-          `http://localhost:8080/review`,
+          `https://rayn-look-backend.onrender.com/review`,
           postData
         );
         console.log(response);

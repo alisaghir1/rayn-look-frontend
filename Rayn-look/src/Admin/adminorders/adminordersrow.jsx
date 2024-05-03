@@ -18,7 +18,7 @@ const Adminordersrow = ({data,onDelete}) => {
 
     if (result.isConfirmed) {
       try {
-        const response = await axios.delete(`http://localhost:8080/Order/${data._id}`);
+        const response = await axios.delete(`https://rayn-look-backend.onrender.com/Order/${data._id}`);
         if (response.status !== 200) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -7,7 +7,7 @@ const useReviewsHook = () => {
 
     useEffect(() => {
         setReviewLoading(true)
-        axios.get('http://localhost:8080/Review')
+        axios.get('https://rayn-look-backend.onrender.com/Review')
         .then((response) => {
             setReviews(response.data)
             setReviewLoading(false)

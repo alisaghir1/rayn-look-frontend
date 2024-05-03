@@ -17,7 +17,7 @@ const AdminLogin = () => {
     console.log("handleLogin function called with username:", username);
 
     try {
-      const response = await axios.post("http://localhost:8080/Admin/login", {
+      const response = await axios.post("https://rayn-look-backend.onrender.com/Admin/login", {
         username,
         password,
       });

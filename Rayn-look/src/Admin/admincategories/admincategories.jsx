@@ -31,7 +31,7 @@ const Admincategories = () => {
     const handleSubmit = async () => {
         try {
             // Use Axios for the POST request
-            const response = await axios.post('http://localhost:8080/category', {
+            const response = await axios.post('https://rayn-look-backend.onrender.com/category', {
                 Name: productName,
             });
 

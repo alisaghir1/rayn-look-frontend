@@ -7,7 +7,7 @@ const useCategoriesHook = () => {
 
     useEffect(() => {
         setCategoryLoading(true)
-        axios.get('http://localhost:8080/category')
+        axios.get('https://rayn-look-backend.onrender.com/category')
         .then((response) => {
             setCategory(response.data)
             setCategoryLoading(false)

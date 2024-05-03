@@ -44,7 +44,7 @@ function SingleProduct() {
   const renderSlides = product.Image.map((imageUrl, index) => (
     <div key={index}>
       <img
-        src={`http://localhost:8080/${imageUrl}`}
+        src={`https://rayn-look-backend.onrender.com/${imageUrl}`}
         alt={`Product Image ${index + 1}`}
         className="img-fluid rounded custom-image-single-product-page"
         style={{ width: "800px", height: "600px" }}

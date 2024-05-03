@@ -7,7 +7,7 @@ const useOrderCount = () => {
   useEffect(() => {
     const fetchOrderCount = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/Order");
+        const response = await axios.get("https://rayn-look-backend.onrender.com/Order");
         setOrderCount(response.data.length);
       } catch (error) {
         console.error("Error fetching review count:", error);

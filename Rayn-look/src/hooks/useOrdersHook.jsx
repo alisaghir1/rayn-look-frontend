@@ -7,7 +7,7 @@ const useOrdersHook = () => {
 
     useEffect(() => {
         setOrderLoading(true)
-        axios.get('http://localhost:8080/order')
+        axios.get('https://rayn-look-backend.onrender.com/order')
         .then((response) => {
             setOrder(response.data)
             setOrderLoading(false)

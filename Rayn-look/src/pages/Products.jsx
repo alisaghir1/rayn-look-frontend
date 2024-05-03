@@ -106,7 +106,7 @@ const Products = () => {
                   <div class="card">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light">
-                      <img style={{aspectRatio: '16/9'}} src={`http://localhost:8080/${product.Image[0]}`}
+                      <img style={{aspectRatio: '16/9'}} src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         class="w-100" />
                       <a href="#!">
                         <div class="mask">
@@ -143,7 +143,7 @@ const Products = () => {
                   <div class="card">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                       data-mdb-ripple-color="light">
-                      <img style={{aspectRatio: '16/9'}} src={`http://localhost:8080/${product.Image[0]}`}
+                      <img style={{aspectRatio: '16/9'}} src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         class="w-100" />
                       <a href="#!">
                         <div class="mask">
