@@ -48,12 +48,12 @@ const Home = () => {
         <meta name="description" content="Explore the most comfortable and affordable contact lenses in Lebanon. Worldwide shipping available." />
         <meta name="keywords" content="contact lenses, affordable lenses, Lebanon, comfortable lenses, colored lenses" />
        </Helmet>
-      <section className="row">
-        <article className="col-lg-8 mb-3" style={{ position: "relative" }}>
-          <img src={i20} alt="a girl wearing contact lenses" className="img-fluid rounded" />
+      <section className="main__article">
+        <article style={{ position: "relative" }}>
+          <img src={i21} alt="a girl wearing contact lenses" style={{borderRadius:'10px', width:'100%'}}  />
           <div style={{ position: "absolute", top: "30%", left: "10%" }}>
             <header
-              style={{ fontSize: "2.5rem" }}
+              style={{ fontSize: "3.5rem" }}
               className="fw-bold text-white custom-text-home w-75 "
             >
               Lebanon's Most{" "}
@@ -76,51 +76,6 @@ const Home = () => {
             >
               SHOP NOW
             </button>
-          </div>
-        </article>
-
-        <article className="col-lg-4 d-flex flex-column justify-content-between mb-5 ">
-          <div className="mb-2" style={{ position: "relative" }}>
-            <img
-              src={i22}
-              alt="contact lenses"
-              className="img-fluid w-100 rounded custom-small-image m-1"
-            />
-            <div style={{ position: "absolute", top: "40%", left: "10%" }}>
-              <p
-                style={{ fontSize: "1.5rem" }}
-                className="fw-bold text-white text-larger w-100"
-              >
-                Without Power
-              </p>
-              <button
-                className="btn btn-warning bg-warning1 p-3"
-                onClick={handleNavigate}
-              >
-                SHOP NOW
-              </button>
-            </div>
-          </div>
-          <div style={{ position: "relative" }}>
-            <img
-              src={i21}
-              alt="wide colored eye"
-              className="img-fluid w-100 rounded custom-small-image m-1"
-            />
-            <div style={{ position: "absolute", top: "40%", left: "10%" }}>
-              <p
-                style={{ fontSize: "1.5rem" }}
-                className="fw-bold text-white text-larger w-100"
-              >
-                With Power
-              </p>
-              <button
-                className="btn btn-warning bg-warning1 p-3"
-                onClick={handleNavigate}
-              >
-                SHOP NOW
-              </button>
-            </div>
           </div>
         </article>
       </section>
@@ -183,8 +138,9 @@ const Home = () => {
                     to={"/single-product"}
                     state={{ product, productLoading }}
                   >
-                    <div className="swiper-image-container">
+                    <div className="swiper-image-container" >
                       <img
+                        style={{borderRadius:'10px'}}
                         className="swiper-image"
                         src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         alt='contact lenses with power'
@@ -281,6 +237,7 @@ const Home = () => {
                   >
                     <div className="swiper-image-container">
                       <img
+                        style={{borderRadius:'10px'}}
                         className="swiper-image"
                         src={`https://rayn-look-backend.onrender.com/${product.Image[0]}`}
                         alt='contact lenses without power'
